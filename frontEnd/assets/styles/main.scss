@@ -1,0 +1,81 @@
+
+// header 
+header{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 64px;
+    background:#1D72C2;
+}
+.logo{
+    padding: 2px;
+    width: 65px;
+    height: 60px;
+}
+
+.listaMenuGeneral{
+    margin: 10px;
+    display: flex;
+    list-style: none;
+    color: #fff;
+}
+.listaMenu{
+    padding: 15px;
+    font-family: 'Open Sans';
+    &:hover{
+        border-bottom: 2px solid #fff;
+        font-weight: bold;
+    }
+}
+
+// login
+
+.bienvenido-login{
+    text-align: center;
+    background-color: #0683F9;
+    height: 30px;
+    padding: 10px;
+    color: #fff;
+}
+
+#formLogin{
+    display: grid;
+    padding: 10px;    
+    justify-content: center;
+    margin-top: 50px;
+    border: 2px solid #0683F9;
+    width: 35%;
+    transform: translate(85%);
+
+    
+}
+.login{
+    margin: 5px;
+    border: 1px solid #0683f9;
+    border-radius: 3px;
+    width: 400px;
+    height: 40px;
+}
+.loginLabel{
+    margin: 5px;
+    color: gray;
+}
+.btn{    
+    width: 100px;
+    margin: 15px;
+    justify-self: center;
+    text-decoration-line: none;
+    color: #1d72c2;
+    padding: 10px;
+    border: 1px solid #0683f9;
+    text-align: center;  
+    
+}
+.btn:hover{
+    color: #fff;
+    background-color: #0683f9;
+}
+
+
+
+
