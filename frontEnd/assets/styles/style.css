@@ -68,7 +68,8 @@ header {
 
 .loginLabel {
   margin: 5px;
-  color: gray;
+  color: #504e4e;
+  text-align: center;
 }
 
 .btn {
