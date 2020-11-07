@@ -9,18 +9,25 @@ app.use(express.json());
 
 const port = 5000;
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    res.header("Access-Control-Allow-Methods", "POST, GET");
+    next();
+});
+
  // USUARIOS LOGIN -  validar email y contraseña y obtener el token
  app.post('/login', (req, res)=>{    
-    sequelize.query ('SELECT * FROM bddelilahresto.usuarios WHERE usuario = ? AND password = ?;',
-    {replacements:[req.body.usuario, req.body.password],
+    sequelize.query ('SELECT * FROM datawarehouse.usuarios WHERE email = ? AND password = ?;',
+    {replacements:[req.body.email, req.body.password],
     type: sequelize.QueryTypes.SELECT}
     ).then(result =>{ 
         console.log(result);     
         for (let i = 0; i < result.length; i++) {        
-            if (result[i].usuario == req.body.usuario && result[i].password == req.body.password) {
+            if (result[i].email == req.body.email && result[i].password == req.body.password) {
                const payload = {
-                   emailLogin: result[i].usuario,
-                   perfilUsuario: result[i].idRolUsuario
+                   emailLogin: result[i].email,
+                   perfilUsuario: result[i].perfil_id
                }
                const token = jwt.sign(payload, SECRET);
                res.status(200).json({ token });

@@ -53,7 +53,7 @@ header {
           justify-content: center;
   margin-top: 50px;
   border: 2px solid #0683F9;
-  width: 35%;
+  width: 480px;
   -webkit-transform: translate(85%);
           transform: translate(85%);
 }
