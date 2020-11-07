@@ -1,23 +1,24 @@
 
-const sequelize = require('./conexiondb.js');
-const jwt = require('jsonwebtoken');
-const SECRET = process.env.SECRET;
-
 var express = require('express'); 
 var app = express();              
 app.use(express.json());
-
 const port = 5000;
+
+const validaciones = require('./validaciones');
+const sequelize = require('./conexiondb.js');
+const jwt = require('jsonwebtoken');
+const SECRET = process.env.SECRET;   
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     res.header("Access-Control-Allow-Methods", "POST, GET");
     next();
-});
+}); 
+
 
  // USUARIOS LOGIN -  validar email y contraseña y obtener el token
- app.post('/login', (req, res)=>{    
+app.post('/login', (req, res)=>{    
     sequelize.query ('SELECT * FROM datawarehouse.usuarios WHERE email = ? AND password = ?;',
     {replacements:[req.body.email, req.body.password],
     type: sequelize.QueryTypes.SELECT}
@@ -43,8 +44,22 @@ app.use(function(req, res, next) {
     })      
 });
 
+// este es solopara prueba de que la validacion del token y el perfil estuviera funcionando
 
+/*app.get('/infoUsuarios', validaciones.validacionToken, validaciones.validarPerfil, (req, res)=>{        
+    
+    sequelize.query ('SELECT * FROM datawarehouse.usuarios;',
+    {type: sequelize.QueryTypes.SELECT}
+    ).then(result =>{ 
+        res.status(200).json(result);
+        console.log(result);
+    }).catch(err=>{
+        res.status(500).json(err);
+    })           
+})*/
 
 app.listen(port, function () {     
     console.log('El servidor express corre en el puerto ' + port);
 });
+
+

@@ -17,7 +17,7 @@ btnLogin.addEventListener('click',()=>{
                 response1.json().then((data)=>{
                     console.log(data);
                 });        
-                location.href = "../html/usuarios.html";
+                location.href = "../html/contactos.html";
             }
             else{
                 alert("usuario o contraseña inválido");
