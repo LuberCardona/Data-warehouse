@@ -25,7 +25,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `datawarehouse`.`contatos`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `datawarehouse`.`contatos` (
+CREATE TABLE IF NOT EXISTS `datawarehouse`.`contactos` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `Nombre` VARCHAR(50) NOT NULL,
   `Apellido` VARCHAR(50) NOT NULL,
@@ -56,18 +56,6 @@ CREATE TABLE IF NOT EXISTS `datawarehouse`.`paises` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-
--- -----------------------------------------------------
--- Table `datawarehouse`.`perfiles`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `datawarehouse`.`perfiles` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `Nombre` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
 -- -----------------------------------------------------
 -- Table `datawarehouse`.`regiones`
 -- -----------------------------------------------------
@@ -87,15 +75,11 @@ CREATE TABLE IF NOT EXISTS `datawarehouse`.`usuarios` (
   `Nombre` VARCHAR(45) NOT NULL,
   `Apellido` VARCHAR(45) NOT NULL,
   `email` VARCHAR(100) NOT NULL,
+  `perfil` VARCHAR(45) NOT NULL,
   `password` VARCHAR(50) NOT NULL,
-  `perfil_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_usuarios_perfil_idx` (`perfil_id` ASC) VISIBLE,
-  CONSTRAINT `fk_usuarios_perfil`
-    FOREIGN KEY (`perfil_id`)
-    REFERENCES `datawarehouse`.`perfiles` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  `repeat_password` VARCHAR(50) NOT NULL,  
+  PRIMARY KEY (`id`))
+
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -106,19 +90,11 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 /*** INSERTAR DATOS INICIALES EN LAS TABLAS***/
 
-/*** insertar opciones de los perfiles de usuario***/
-INSERT INTO `datawarehouse`.`perfiles`
-(`id`, `Nombre`)
-VALUES
-(NULL, "Administrador"),
-(NULL, "Contactos");
-
-
 /*** insertar datos iniciales de usuarios***/
 INSERT INTO `datawarehouse`.`usuarios`
-(`id`, `Nombre`, `Apellido`, `email`)
+(`id`, `Nombre`, `Apellido`, `email`, `perfil`, `password`, `repeat_password`)
 VALUES
-(NULL, "Ana", "Sierra", "anasierra@email.com", 1),
-(NULL, "Vanesa", "muñoz", "vanesa@email.com", 1),
-(NULL, "Yuliana", "Mesa", "yuliana@email.com", 2),
-(NULL, "Tatiana", "Castro", "tatiana@email.com", 2);
+(NULL, "Ana", "Sierra", "anasierra@email.com", "Administrador", 12345678, 12345678),
+(NULL, "Vanesa", "muñoz", "vanesa@email.com", "Administrador", 90123456, 90123456),
+(NULL, "Yuliana", "Mesa", "yuliana@email.com", "Contactos", 78945612, 78945612),
+(NULL, "Tatiana", "Castro", "tatiana@email.com", "Contactos", 34567892, 34567892);

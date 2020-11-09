@@ -2,7 +2,7 @@
 var express = require('express'); 
 var app = express();              
 app.use(express.json());
-const port = 5000;
+const port = 3000;
 
 const validaciones = require('./validaciones');
 const sequelize = require('./conexiondb.js');
@@ -28,16 +28,24 @@ app.post('/login', (req, res)=>{
             if (result[i].email == req.body.email && result[i].password == req.body.password) {
                const payload = {
                    emailLogin: result[i].email,
-                   perfilUsuario: result[i].perfil_id
-               }
-               const token = jwt.sign(payload, SECRET);
-               res.status(200).json({ token });
-               console.log(token);
-            }       
-        }
-        if (result == '') {
-            res.status(401).json('Usuario o contraseña invalidos');
-            console.log('Usuario o contraseña invalidos');
+                   perfilUsuario: result[i].perfil                   
+               }               
+                const token = jwt.sign(payload, SECRET);
+                if (payload.perfilUsuario == 'Administrador'){ 
+                    const payload2 = jwt.decode(token);
+                    res.status(200).json({ token });
+                     console.log(token)              
+                           
+                }else if(payload.perfilUsuario !== 'Administrador'){ 
+                        const payload2 = jwt.decode(token);
+                        res.status(401).json({ token });                          
+                    console.log('acceso de contactos');                    
+                }                    
+            } 
+            else if (result == '') {
+                res.status(401).json('Usuario o contraseña invalidos');
+                console.log('Usuario o contraseña invalidos');
+            }             
         }       
     }).catch(err=>{
         res.status(500).json(err);
@@ -46,7 +54,7 @@ app.post('/login', (req, res)=>{
 
 // este es solopara prueba de que la validacion del token y el perfil estuviera funcionando
 
-/*app.get('/infoUsuarios', validaciones.validacionToken, validaciones.validarPerfil, (req, res)=>{        
+app.get('/infoUsuarios', validaciones.validacionToken, validaciones.validarPerfil, (req, res)=>{        
     
     sequelize.query ('SELECT * FROM datawarehouse.usuarios;',
     {type: sequelize.QueryTypes.SELECT}
@@ -56,7 +64,8 @@ app.post('/login', (req, res)=>{
     }).catch(err=>{
         res.status(500).json(err);
     })           
-})*/
+})
+
 
 app.listen(port, function () {     
     console.log('El servidor express corre en el puerto ' + port);

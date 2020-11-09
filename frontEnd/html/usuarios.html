@@ -8,7 +8,8 @@
 </head>
 <body>
     <header>
-        <img class="logo" src="../assets/images/logo.png" alt="logo">
+        <a href="index.html"> <img class="logo" src="../assets/images/logo.png" alt="logo"></a>        
+        
         <nav>
             <ul class="listaMenuGeneral">
                 <li class="listaMenu"><a class="menu" href=""></a>Contactos</li>
@@ -19,22 +20,36 @@
         </nav>
     </header>
     <main>
-       
-            <form id="formLogin" action="">
-                <h2 class="bienvenido-login">Bienvenido</h2>
-                <label class="loginLabel" for="usuario">Usuario</label>
-                <input class="login email" type="email" placeholder="Ingrese su correo electronico">
-                <label class="loginLabel" for="usuario" >Contraseña</label>
-                <input class="login password" type="password" placeholder="Ingrese su contraseña">
-                <a class="btn btnLogin" href="#" >Ingresar</a>
-            </form> 
+        <form id="formLogin" action="">
+            <h2 class="bienvenido-login">Crear Usuario</h2>
 
-        
+            <label class="loginLabel" for="usuario">Nombre</label>
+            <input class="login nombreCrearUsuario" type="text" placeholder="Ingrese el nombre del usuario">
+
+            <label class="loginLabel" for="apellido">Apellido</label>
+            <input class="login apellidoCrearUsuario" type="text" placeholder="Ingrese el apellido del usuario">
+
+            <label class="loginLabel" for="email">Email</label>
+            <input class="login email emailCrearUsuario" type="email" placeholder="Ingrese el correo electronico">
+
+            <label class="loginLabel" for="perfil">Perfil</label>
+            <select class="login perfil">
+            <option>Administrador</option>
+            <option>Contactos</option>      
+            </select>
+
+            <label class="loginLabel" for="contraseña" >Contraseña</label>
+            <input class="login password passwordCrearUsuario" type="password" placeholder="Ingrese su contraseña">
+
+            <label class="loginLabel" for="contraseña" >Confirmar Contraseña</label>
+            <input class="login password confirmarPassword" type="password" placeholder="Confirme su contraseña">
+
+            <a class="btn btnCrearUsuario" href="#" onclick="crearUsuario()">Crear</a>
+        </form>  
     </main>
     <footer>
 
-    </footer> 
-    
-    <script src="../js/script.js"></script>
+    </footer>  
+    <script src="../js/script.js"></script>  
 </body>
 </html>
