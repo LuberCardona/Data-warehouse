@@ -1,4 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+body {
+  background-color: #9aadcd91;
+}
+
 header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -9,16 +13,40 @@ header {
   width: 100%;
   height: 64px;
   background: #7ba7d1;
+  border-radius: 10px;
+}
+
+.divMain {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: 5px solid #7ba7d1;
+  padding: 10px;
+  width: 830px;
+  -webkit-transform: translate(27%);
+          transform: translate(27%);
+  margin-top: 50px;
+  border-radius: 10px;
 }
 
 .logo {
-  padding: 2px;
-  width: 65px;
-  height: 60px;
+  padding: 30px;
+  width: 300px;
+  height: 300px;
 }
 
 .homeTitle {
   color: aqua;
+  font-size: 67px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  -webkit-transform: translateX(90%);
+          transform: translateX(90%);
+  margin: 0;
 }
 
 .listaMenuGeneral {
@@ -49,6 +77,7 @@ header {
   height: 30px;
   padding: 10px;
   color: #fff;
+  border-radius: 10px;
 }
 
 #formLogin {
@@ -58,17 +87,13 @@ header {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin-top: 50px;
-  border: 2px solid #7ba7d1;
   width: 480px;
-  -webkit-transform: translate(85%);
-          transform: translate(85%);
 }
 
 .login {
   margin: 5px;
   border: 1px solid #7ba7d1;
-  border-radius: 3px;
+  border-radius: 10px;
   width: 400px;
   height: 40px;
 }
@@ -90,6 +115,7 @@ header {
   padding: 10px;
   border: 1px solid #7ba7d1;
   text-align: center;
+  border-radius: 10px;
 }
 
 .btn:hover, .btnCrearUsuario:hover {

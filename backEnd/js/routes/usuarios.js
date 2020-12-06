@@ -35,11 +35,11 @@ const SECRET = process.env.SECRET;
        
 });
 
-module.exports = router;
+
 
 // este es solopara prueba de que la validacion del token y el perfil estuviera funcionando
 
-/*app.get('/infoUsuarios', validaciones.validacionToken, validaciones.validarPerfil, (req, res)=>{        
+router.get('/infoUsuarios', validaciones.validacionToken, validaciones.validarPerfil, (req, res)=>{        
     
     sequelize.query ('SELECT * FROM datawarehouse.usuarios;',
     {type: sequelize.QueryTypes.SELECT}
@@ -49,7 +49,9 @@ module.exports = router;
     }).catch(err=>{
         res.status(500).json(err);
     })           
-})*/
+})
+
+module.exports = router;
 
 // POST USUARIOS  - un usuario con perfil de administrador puede crear un usuario
 /*app.post('/crearUsuario', validaciones.validacionToken, validaciones.validarPerfil, validaciones.validacionEmailYaExiste,   (req, res) => {    
