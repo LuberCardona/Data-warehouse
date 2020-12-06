@@ -1,13 +1,7 @@
-
-// conexion puerto 5000
 var express = require('express'); 
-var app = express();              
-app.use(express.json());
+const app = express();
 const port = 3000;
-
-app.listen(port, function () {     
-console.log('El servidor express corre en el puerto ' + port);
-});
+app.use(express.json());
 
 
 // permitir accesos desde el front - cors policy
@@ -17,5 +11,11 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Methods", "POST, GET");
     next();
 }); 
-    
 
+const routerUsuarios = require("../js/routes/usuarios");
+
+app.post('/login', routerUsuarios);
+
+app.listen(port, function () {     
+    console.log('El servidor express corre en el puerto ' + port);
+});

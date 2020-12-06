@@ -22,7 +22,7 @@ header {
 }
 
 .listaMenuGeneral {
-  margin: 10px;
+  margin: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -31,12 +31,15 @@ header {
 }
 
 .listaMenu {
-  padding: 15px;
+  padding: 10px;
   font-family: 'Open Sans';
+  color: #fff;
+  -webkit-text-decoration-line: unset;
+          text-decoration-line: unset;
 }
 
 .listaMenu:hover {
-  border-bottom: 2px solid #fff;
+  color: aqua;
   font-weight: bold;
 }
 

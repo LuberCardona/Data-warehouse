@@ -1,7 +1,19 @@
-const sequelize = require('./conexiondb.js');
+const router = require("express").Router();
+const sequelize = require('../../js/conexiondb');
 const jwt = require('jsonwebtoken');
 const SECRET = process.env.SECRET;
 
+
+const validateLogin = (req, res, next) => {
+    try {
+        const { email, password } = req.body;        
+        if (!email || !password )
+            return res.status(400).json({ error: "Datos inválidos." });
+            next();
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+};
 
 
 // Validar que el token sea verdadero - TOKEN 1 ############################
@@ -80,6 +92,7 @@ const validacionEmailYaExiste = (req, res, next) => {
 };
 
 module.exports = {
+    validateLogin,
     validacionToken,
     validarPerfil, 
     validacionEmailYaExiste

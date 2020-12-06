@@ -18,16 +18,21 @@ header{
 }
 
 .listaMenuGeneral{
-    margin: 10px;
+    margin: 20px;
     display: flex;
     list-style: none;
     color: #fff;
 }
 .listaMenu{
-    padding: 15px;
+    padding: 10px;
     font-family: 'Open Sans';
+    color: #fff;
+    text-decoration-line: unset;
+
+
     &:hover{
-        border-bottom: 2px solid #fff;
+       // border-bottom: 2px solid #fff;
+        color: aqua;
         font-weight: bold;
     }
 }

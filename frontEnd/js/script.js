@@ -13,7 +13,7 @@ function login(){
             if(response1.status==200){
                 response1.json().then((data)=>{
                     console.log(data); 
-                   // sessionStorage.setItem("jwt", data.token)               
+                sessionStorage.setItem("jwt", data.token)               
             });          
             location.href = "../html/usuarios.html";
             }else if(response1.status==401){
