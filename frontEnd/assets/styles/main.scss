@@ -29,6 +29,11 @@ header{
     height: 300px;
    // margin-top: 50px
 }
+.logoHeader{
+    padding: 5px;
+    width: 50px;
+    height: 50px;
+}
 
 .homeTitle{
     color: aqua;
@@ -63,7 +68,7 @@ header{
 .bienvenido-login{
     text-align: center;
     background-color: #7ba7d1;
-    height: 30px;
+    //height: 30px;
     padding: 10px;
     color: #fff;
     border-radius: 10px;
@@ -76,9 +81,17 @@ header{
     //margin-top: 50px;
    // border: 2px solid #7ba7d1;
     width: 480px;
-    //transform: translate(85%);
+    //transform: translate(85%);   
 
     
+}
+
+.formCrearUsuario{
+    display: grid;
+    padding: 10px;    
+    justify-content: center;
+    width: 480px;
+    transform: translate(90%);
 }
 .login{
     margin: 5px;
@@ -102,7 +115,12 @@ header{
     border: 1px solid #7ba7d1;
     text-align: center;  
     border-radius: 10px;
+    color: darkslategray;
     
+}
+
+.btnCrearU{
+    width: auto;
 }
 .btn:hover{
     color: #fff;
@@ -111,8 +129,15 @@ header{
 
 .btnCrearUsuario{
    @extend .btn
+   
 }
 
+.titulosuarios{
+    text-align: center;
+    color: lightslategray;
+}
 
-
+.ocultarMostrar{
+   display: none;    
+}
 

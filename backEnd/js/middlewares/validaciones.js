@@ -19,8 +19,8 @@ const validateLogin = (req, res, next) => {
 // Validar que el token sea verdadero - TOKEN 1 ############################
 const validacionToken = (req, res, next)=>{
     try {
-        const token = req.headers.authorization.split(' ')[1];
-        console.log(token);
+        const token = req.header("Authorization").split(' ')[1];
+        console.log(token + 'token de header');
         jwt.verify(token, SECRET);
         next();
     } catch (error) {
@@ -45,10 +45,12 @@ const validacionToken = (req, res, next)=>{
 // VALIDAR PERFIL DE USUARIO 1 ##########################################
 const validarPerfil = (req, res, next) => {
     try {
-        const token = req.headers.authorization.split(' ')[1];
-        console.log(token);
+        const token = req.header("Authorization").split(' ')[1];
+        //res.header("auth-token", token).json(token);
+        console.log(token + "de perfil admin");
         const payload = jwt.decode(token);
-        if (payload.perfilUsuario == 'Administrador'){ 
+        console.log(payload.perfilUsuario);
+        if (payload.perfilUsuario == 'Administrador'){             
             next();
         }else{
             res.status(401).json('Usuario no autorizado para realizar esta acción');
@@ -82,7 +84,9 @@ const validacionEmailYaExiste = (req, res, next) => {
     ).then(result =>{       
         for (let i = 0; i < result.length; i++) {        
             if (result[i].email == req.body.email) {
-            return res.send('usuario o email ya existe');
+             //return res.send('usuario o email ya existe'); 
+             return res.status(409).json('usuario o email ya existe');
+                     
             }
         }
         return next();
@@ -91,9 +95,41 @@ const validacionEmailYaExiste = (req, res, next) => {
     })   
 };
 
+const validacionDatosUsuario = (req, res, next) => {
+    let {password} = req.body;
+         
+        if (password.length < 4){
+            return res.status(401).json('La contraseña debe contener minimo 4 caracteres');           
+        } 
+       /* if (repeat_Password !== password) {
+            return res.status(403).json({ error: 'La contraseña debe coincidir con la anterior'});            
+        }*/
+    return next();
+        
+}
+
+const validarUsuarioExiste = (req, res, next) => {
+    sequelize.query('SELECT * FROM datawarehouse.usuarios WHERE id = ?;',
+       {replacements:[req.params.id], type: sequelize.QueryTypes.SELECT} 
+    ).then(result =>{
+      console.log(result);
+        if (result == "") {
+            res.send('El usuario no existe')
+        }else{
+            next();
+        }
+    }).catch(err=>{
+        res.status(500).json(err);
+    }) 
+
+};
+
+
 module.exports = {
     validateLogin,
     validacionToken,
     validarPerfil, 
-    validacionEmailYaExiste
+    validacionEmailYaExiste,
+    validacionDatosUsuario,
+    validarUsuarioExiste
 }

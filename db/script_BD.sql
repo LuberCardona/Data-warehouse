@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `datawarehouse`.`compañias` (
  INDEX `fk_compañias_ciudades_idx` (`ciudad_id` ASC) VISIBLE,
   CONSTRAINT `fk_compañias_ciudades`
     FOREIGN KEY (`ciudad_id`)
-    REFERENCES `datawarehouse`.`cuidades` (`id`)
+    REFERENCES `datawarehouse`.`ciudades` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -41,8 +41,10 @@ CREATE TABLE IF NOT EXISTS `datawarehouse`.`contactos` (
   `Apellido` VARCHAR(50) NOT NULL,
   `Cargo` VARCHAR(45) NOT NULL,
   `email` VARCHAR(100) NOT NULL,
+  `Canal_favorito` VARCHAR(100) NOT NULL,
+  `Interes` VARCHAR(100) NOT NULL,
   `ciudad_id` INT NOT NULL,
-  `compañia_id` INT NOT NULL,
+  `compañia_id` INT NOT NULL,  
   PRIMARY KEY (`id`),
    INDEX `fk_contactos_compañias_idx` (`compañia_id` ASC) VISIBLE,
   INDEX `fk_contactos_ciudades_idx` (`ciudad_id` ASC) VISIBLE,
@@ -53,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `datawarehouse`.`contactos` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_contactos_ciudades`
     FOREIGN KEY (`ciudad_id`)
-    REFERENCES `datawarehouse`.`cuidades` (`id`)
+    REFERENCES `datawarehouse`.`ciudades` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -78,15 +80,15 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 
-/*** CUIDADES**/
+/*** CIUDADES**/
 
-CREATE TABLE IF NOT EXISTS `datawarehouse`.`cuidades` (
+CREATE TABLE IF NOT EXISTS `datawarehouse`.`ciudades` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `Nombre` VARCHAR(45) NOT NULL,
   `pais_id` INT NOT NULL,
   PRIMARY KEY (`id`), 
-  INDEX `fk_cuidades_paises_idx` (`pais_id` ASC) VISIBLE,
-  CONSTRAINT `fk_cuidades_paises`
+  INDEX `fk_ciudades_paises_idx` (`pais_id` ASC) VISIBLE,
+  CONSTRAINT `fk_ciudades_paises`
     FOREIGN KEY (`pais_id`)
     REFERENCES `datawarehouse`.`paises` (`id`)
     ON DELETE NO ACTION
@@ -115,7 +117,6 @@ CREATE TABLE IF NOT EXISTS `datawarehouse`.`usuarios` (
   `email` VARCHAR(100) NOT NULL,
   `perfil` VARCHAR(45) NOT NULL,
   `password` VARCHAR(50) NOT NULL,
-  `repeat_password` VARCHAR(50) NOT NULL,  
   PRIMARY KEY (`id`))
 
 ENGINE = InnoDB
@@ -126,26 +127,20 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
-/*** INSERTAR DATOS INICIALES EN LAS TABLAS***/
-
-/*** insertar datos iniciales de usuarios***/
 INSERT INTO `datawarehouse`.`usuarios`
-(`id`, `Nombre`, `Apellido`, `email`, `perfil`, `password`, `repeat_password`)
+(`id`, `Nombre`, `Apellido`, `email`, `perfil`, `password`)
 VALUES
-(NULL, "Ana", "Sierra", "anasierra@email.com", "Administrador", 12345678, 12345678),
-(NULL, "Vanesa", "muñoz", "vanesa@email.com", "Administrador", 90123456, 90123456),
-(NULL, "Yuliana", "Mesa", "yuliana@email.com", "Contactos", 78945612, 78945612),
-(NULL, "Tatiana", "Castro", "tatiana@email.com", "Contactos", 34567892, 34567892);
+(NULL, "Ana", "Sierra", "anasierra@email.com", "Administrador", 12345678),
+(NULL, "Vanesa", "muñoz", "vanesa@email.com", "Administrador", 90123456),
+(NULL, "Yuliana", "Mesa", "yuliana@email.com", "Contactos", 78945612),
+(NULL, "Tatiana", "Castro", "tatiana@email.com", "Contactos", 34567892);
 
-/*** insertar datos de regiones***/
 INSERT INTO `datawarehouse`.`regiones`
 (`id`,`Nombre`)
 VALUES
 (NULL, "Sudamerica"),
 (NULL, "Norteamerica");
 
-
-/*** insertar datos de paises***/
 INSERT INTO `datawarehouse`.`paises`
 (`id`, `Nombre`, `region_id`)
 VALUES
@@ -156,8 +151,7 @@ VALUES
 (NULL, "Mexico", 2),
 (NULL, "Estados Unidos", 2);
 
-/*** insertar datos de ciudades***/
-INSERT INTO `datawarehouse`.`cuidades`
+INSERT INTO `datawarehouse`.`ciudades`
 (`id`,`Nombre`, `pais_id`)
 VALUES
 (NULL, "Buenos Aires ", 1),
@@ -168,7 +162,6 @@ VALUES
 (NULL, "Cuidad de Mexico", 5),
 (NULL, "Tijuana", 5);
 
-/*** insertar datos de compañias***/
 INSERT INTO `datawarehouse`.`compañias`
 (`id`, `Nombre`, `Direccion`, `email`, `Telefono`, `ciudad_id`)
 VALUES
@@ -178,24 +171,16 @@ VALUES
 (NULL, "Mercado libre", "cll libre 12-45", "libre@email.com", "5541231245", 4),
 (NULL, "Exito", "cll exito 24-18", "exito@email.com", "5715554444", 5);
 
-
-
-/*** insertar datos de contactos***/
 INSERT INTO `datawarehouse`.`contactos`
-(`id`, `Nombre`, `Apellido`, `Cargo`, `email`, `ciudad_id`, `compañia_id`)
+(`id`, `Nombre`, `Apellido`, `Cargo`, `email`, `Canal_favorito`, `Interes`, `ciudad_id`, `compañia_id`)
 VALUES
-(NULL, "Camila", "Panto", "UX Designer", "camila@emai.com", 1, 1),
-(NULL, "Agustin", "Soria", "UI Designer", "agustin@email.com", 2, 2),
-(NULL, "Milena", "Soria", "Developer", "milena@email.com", 3, 3),
-(NULL, "Milena", "Soria", "Developer", "milena@email.com", 6, 4),
-(NULL, "Milena", "Soria", "Developer", "milena@email.com", 4, 4),
-(NULL, "Milena", "Soria", "Developer", "milena@email.com", 7, 4),
-(NULL, "Milena", "Soria", "Developer", "milena@email.com", 5, 5);
-
-
-
-
-
+(NULL, "Camila", "Panto", "UX Designer", "camila@emai.com", "Correo Electrónico", 0, 1, 1),
+(NULL, "Agustin", "Soria", "UI Designer", "agustin@email.com", "WhatsApp", 25, 2, 2),
+(NULL, "Milena", "Soria", "Developer", "milena@email.com","Correo Electrónico", 50, 3, 3),
+(NULL, "Milena", "Soria", "Developer", "milena@email.com",  "WhatsApp", 75, 6, 4),
+(NULL, "Milena", "Soria", "Developer", "milena@email.com", "Correo Electrónico", 100, 4, 4),
+(NULL, "Milena", "Soria", "Developer", "milena@email.com", "Correo Electrónico", 90, 7, 4),
+(NULL, "Milena", "Soria", "Developer", "milena@email.com", "WhatsApp", 60, 5, 5);
 
 
 

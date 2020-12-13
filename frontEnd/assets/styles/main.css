@@ -37,6 +37,12 @@ header {
   height: 300px;
 }
 
+.logoHeader {
+  padding: 5px;
+  width: 50px;
+  height: 50px;
+}
+
 .homeTitle {
   color: aqua;
   font-size: 67px;
@@ -73,7 +79,6 @@ header {
 .bienvenido-login {
   text-align: center;
   background-color: #7ba7d1;
-  height: 30px;
   padding: 10px;
   color: #fff;
   border-radius: 10px;
@@ -87,6 +92,18 @@ header {
       -ms-flex-pack: center;
           justify-content: center;
   width: 480px;
+}
+
+.formCrearUsuario {
+  display: -ms-grid;
+  display: grid;
+  padding: 10px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 480px;
+  -webkit-transform: translate(90%);
+          transform: translate(90%);
 }
 
 .login {
@@ -115,10 +132,24 @@ header {
   border: 1px solid #7ba7d1;
   text-align: center;
   border-radius: 10px;
+  color: darkslategray;
+}
+
+.btnCrearU {
+  width: auto;
 }
 
 .btn:hover, .btnCrearUsuario:hover {
   color: #fff;
   background-color: #7ba7d1;
+}
+
+.titulosuarios {
+  text-align: center;
+  color: lightslategray;
+}
+
+.ocultarMostrar {
+  display: none;
 }
 /*# sourceMappingURL=main.css.map */
