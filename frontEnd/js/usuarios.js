@@ -11,6 +11,41 @@ let perfil = document.getElementsByClassName('perfil')[0];
 let passwordCrearUsuario = document.getElementsByClassName('passwordCrearUsuario')[0];
 //let confirmarPassword = document.getElementsByClassName('confirmarPassword')[0];
 
+let datosUsuarios = document.getElementById('datosUsuarios');
+//let filasUsuarios = document.getElementById('usuarios')[0];
+
+setTimeout(() => {
+    $(document).ready(function() {
+        $('#usuarios').DataTable();
+    });
+}, 100);
+
+window.onload = function () {
+        fetch('http://localhost:3000/infoUsuarios', {
+            method: 'GET',
+            headers: { "Authorization": "Bearer " + jwt }
+        }).then(res => {
+            res.json().then(data => {
+                data.forEach((e) => {
+                    console.log(e);
+                    let template = 
+                    `<tr>
+                        <td><input type="checkbox"></td>
+                            <td>${e.Nombre}</td>
+                            <td>${e.Apellido}</td>
+                            <td>${e.email}</td>
+                            <td>${e.perfil}</td>  
+                           <td><button type="button" class="btn btn-danger">Eliminar</button>
+                           <button type="button" class="btn btn-warning">Editar</button></td>                    
+                    </tr>`;
+                    datosUsuarios.insertAdjacentHTML('beforeend', template);
+                });
+            });
+        }).catch(error => {
+           console.log(error);
+    });
+};
+
 btnCrearUsuario.addEventListener('click', function () {   
     function crearUsuario(){        
         let ocultarform = document.getElementById('ocultarform');             
@@ -57,43 +92,3 @@ btnLimpiar.addEventListener('click', () => {
     passwordCrearUsuario.value = "";
 });
 
-let datosUsuarios = document.getElementById('datosUsuarios');
-//let filasUsuarios = document.getElementById('usuarios')[0];
-
-setTimeout(() => {
-    $(document).ready(function() {
-        $('#usuarios').DataTable();
-    });
-}, 100);
-
-window.onload = function () {
-        fetch('http://localhost:3000/infoUsuarios', {
-            method: 'GET',
-            headers: { "Authorization": "Bearer " + jwt }
-        }).then(res => {
-            res.json().then(data => {
-                data.forEach((e) => {
-                    console.log(e);
-                    let template = 
-                    `<tr>
-                        <td><input type="checkbox"></td>
-                            <td>${e.Nombre}</td>
-                            <td>${e.Apellido}</td>
-                            <td>${e.email}</td>
-                            <td>${e.perfil}</td>  
-                           <td><button type="button" class="btn btn-danger">Eliminar</button>
-                           <button type="button" class="btn btn-warning">Editar</button></td>                    
-                    </tr>`;
-                    datosUsuarios.insertAdjacentHTML('beforeend', template);
-                });
-            });
-        }).catch(error => {
-           console.log(error);
-    });
-};
-
-//onclick="confirmation(${e.id})"
-//<td><input type="checkbox"></td>
-
-//<td><button type='button' class="btn btn-outline-danger" btn-smd' data-toggle="modal" data-target="#modalDelete"><span class="material-icons">Eliminar</span></button>
-                       // </td>
