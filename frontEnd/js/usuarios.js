@@ -58,7 +58,13 @@ btnLimpiar.addEventListener('click', () => {
 });
 
 let datosUsuarios = document.getElementById('datosUsuarios');
-//let filasUsuarios = document.getElementById('filasUsuarios');
+//let filasUsuarios = document.getElementById('usuarios')[0];
+
+setTimeout(() => {
+    $(document).ready(function() {
+        $('#usuarios').DataTable();
+    });
+}, 100);
 
 window.onload = function () {
         fetch('http://localhost:3000/infoUsuarios', {
@@ -67,13 +73,17 @@ window.onload = function () {
         }).then(res => {
             res.json().then(data => {
                 data.forEach((e) => {
-                    let template = `<tr><td><input type="checkbox"></td>
-                        <td>${e.nombreCrearUsuario}</td>
-                        <td>${e.apellidoCrearUsuario}</td>
-                        <td>${e.emailCrearUsuario}</td>
-                        <td>${e.perfil}</td>
-                        <td><button type='button' class='btn btn-danger btn-smd' data-toggle="modal" data-target="#modalDelete"><span class="material-icons" onclick="confirmation(${e.id})">delete</span></button>
-                        </td></tr>`;
+                    console.log(e);
+                    let template = 
+                    `<tr>
+                        <td><input type="checkbox"></td>
+                            <td>${e.Nombre}</td>
+                            <td>${e.Apellido}</td>
+                            <td>${e.email}</td>
+                            <td>${e.perfil}</td>  
+                           <td><button type="button" class="btn btn-danger">Eliminar</button>
+                           <button type="button" class="btn btn-warning">Editar</button></td>                    
+                    </tr>`;
                     datosUsuarios.insertAdjacentHTML('beforeend', template);
                 });
             });
@@ -81,3 +91,9 @@ window.onload = function () {
            console.log(error);
     });
 };
+
+//onclick="confirmation(${e.id})"
+//<td><input type="checkbox"></td>
+
+//<td><button type='button' class="btn btn-outline-danger" btn-smd' data-toggle="modal" data-target="#modalDelete"><span class="material-icons">Eliminar</span></button>
+                       // </td>

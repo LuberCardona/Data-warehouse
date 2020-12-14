@@ -16,18 +16,18 @@ app.use(function(req, res, next) {
 }); 
 
 // ROUTER
+
 const routerUsuarios = require('../js/routes/usuarios');
 const routerContactos = require('../js/routes/contactos');
 const routerCompanias = require('../js/routes/companias');
 const routerCiu_Reg_Pais = require('../js/routes/ciu_region_pais');
 
-app.use('/usuarios', routerUsuarios);
+/*app.use('/usuarios', routerUsuarios);
 app.use('/contactos', routerContactos);
 app.use('/companias', routerCompanias);
-app.use('/ciuRegionPais', routerCiu_Reg_Pais);
+app.use('/ciuRegionPais', routerCiu_Reg_Pais);*/
 
 
-/*
 // ENDPOINT DE USUARIOS 
 app.post('/login', routerUsuarios);
 app.get('/infoUsuarios', routerUsuarios); 
@@ -48,7 +48,28 @@ app.get('/infoCompanias', routerCompanias);  // todos los contactos
 app.get('/infoCompania/:id', routerCompanias);  // un contacto por id
 app.post('/agregarCompania', routerCompanias);
 app.put('/modificarCompania/:id', routerCompanias);
-app.delete('/eliminarCompania/:id',routerCompanias);*/
+app.delete('/eliminarCompania/:id',routerCompanias);
+
+// ENDPOINTS DE CIUDADES
+app.get('/infoCiudades', routerCiu_Reg_Pais);  // todos las ciudades 
+app.get('/infoCiudades/:paisId', routerCiu_Reg_Pais);  //  ciudades por id del Pais
+app.post('/crearCuidad', routerCiu_Reg_Pais);
+app.put('/modificarCiudad/:id', routerCiu_Reg_Pais);
+app.delete('/eliminarCiudad/:id', routerCiu_Reg_Pais);
+
+// ENDPOINTS DE REGIONES
+app.get('/infoRegiones', routerCiu_Reg_Pais);  // todos las REGIONES 
+app.get('/infoRegion/:id', routerCiu_Reg_Pais);  //  UNA REGION POR ID REGION
+app.post('/crearRegion', routerCiu_Reg_Pais);
+app.put('/modificarRegion/:id', routerCiu_Reg_Pais);
+app.delete('/eliminarRegion/:id', routerCiu_Reg_Pais);
+
+// ENDPOINTS DE PAISES
+app.get('/infoPaises', routerCiu_Reg_Pais);  // todos los paises
+app.get('/infopaises/:regionId', routerCiu_Reg_Pais);  //  paises por region id
+app.post('/crearPais', routerCiu_Reg_Pais);
+app.put('/modificarPais/:id', routerCiu_Reg_Pais);
+app.delete('/eliminarPais/:id', routerCiu_Reg_Pais);
 
 
 app.listen(port, function () {     

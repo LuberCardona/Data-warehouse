@@ -25,7 +25,7 @@ router.get('/infoRegiones', async (req, res) => {  // OBTENER TODAS LAS REGIONES
 });
 
 
-router.get("/infoRegion/:id", async (req, res) => {  // OBTENER UNA REGION POR ID
+router.get('/infoRegion/:id', async (req, res) => {  // OBTENER UNA REGION POR ID
     try {
       const { id } = req.params;  
       let obtenerRegion = await access_db.obtenerRegionxId(id);  
@@ -35,7 +35,7 @@ router.get("/infoRegion/:id", async (req, res) => {  // OBTENER UNA REGION POR I
     }
 });
 
-router.get("/infopaises/:regionId", async (req, res) => {
+router.get('/infopaises/:regionId', async (req, res) => {
     try {
       const { regionId } = req.params;  
       let obtenerPaisesXreg = await access_db.obtenerPaisxRegionId(regionId);
@@ -45,7 +45,7 @@ router.get("/infopaises/:regionId", async (req, res) => {
     }
 });
 
-router.get("/infoCiudades/:paisId", async (req, res) => {
+router.get('/infoCiudades/:paisId', async (req, res) => {
     try {
       const { paisId } = req.params;  
       let infoCiudadesXpais= await access_db.obtenerCiudadxPaisId(paisId);
@@ -55,7 +55,7 @@ router.get("/infoCiudades/:paisId", async (req, res) => {
     }
 });
 
-router.get("/infoPaises", async (req, res) => {
+router.get('/infoPaises', async (req, res) => {
     try {
       let obtenerPaises = await access_db.obtenerPaises();
       return res.json(obtenerPaises);
@@ -161,7 +161,7 @@ router.delete('/eliminarPais/:id', async (req, res) => {
     }
 });
 
-router.delete("/eliminarCiudad/:id", async (req, res) => {
+router.delete('/eliminarCiudad/:id', async (req, res) => {
     try {
       const { id } = req.params;  
       await access_db.eliminarCiudad(id);  
