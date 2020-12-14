@@ -4,7 +4,7 @@ const validaciones = require('../../js/middlewares/validaciones');
 const sequelize = require('../../js/conexiondb');
 const jwt = require('jsonwebtoken');
 const SECRET = process.env.SECRET;  
-const access = require('../../../../DataWarehouse/db/access_db/usuarios'); 
+const access_db = require('../../../../DataWarehouse/db/access_db/usuarios'); 
 
 
  // USUARIOS LOGIN -  validar email y contraseña y obtener el token
@@ -84,7 +84,7 @@ router.delete('/eliminarUsuario/:id', async (req, res) => {
     try {
       const { id } = req.params;
   
-      await access.eliminarUsuario(id);
+      await access_db.eliminarUsuario(id);
   
       res.json({ message: "Usuario Eliminado" });
     } catch (error) {

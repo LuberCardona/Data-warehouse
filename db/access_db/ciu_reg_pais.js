@@ -1,4 +1,4 @@
-const sequelize = require('../../../DataWarehouse/backEnd/js/conexiondb');
+const sequelize = require('../../backEnd/js/conexiondb');
 
 // detallesCiudades
 const infoCiudades = `SELECT 

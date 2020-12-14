@@ -16,26 +16,39 @@ app.use(function(req, res, next) {
 }); 
 
 // ROUTER
-const routerUsuarios = require("../js/routes/usuarios");
+const routerUsuarios = require('../js/routes/usuarios');
+const routerContactos = require('../js/routes/contactos');
+const routerCompanias = require('../js/routes/companias');
+const routerCiu_Reg_Pais = require('../js/routes/ciu_region_pais');
+
+app.use('/usuarios', routerUsuarios);
+app.use('/contactos', routerContactos);
+app.use('/companias', routerCompanias);
+app.use('/ciuRegionPais', routerCiu_Reg_Pais);
 
 
+/*
 // ENDPOINT DE USUARIOS 
-/*app.use('/usuarios', routerUsuarios);*/
-
 app.post('/login', routerUsuarios);
-app.get ('/infoUsuarios', routerUsuarios); // obtener usuarios
+app.get('/infoUsuarios', routerUsuarios); 
 app.post('/crearUsuario', routerUsuarios);
-app.put ('/modificarUsuario/:id', routerUsuarios);
-app.put ('/eliminarUsuario/:id',routerUsuarios);
+app.put('/modificarUsuario/:id', routerUsuarios);
+app.delete('/eliminarUsuario/:id',routerUsuarios);
 
 // ENDPOINT DE CONTACTOS
 
+app.get('/infoContactos', routerContactos);  // todos los contactos 
+app.get('/infoContacto/:id', routerContactos);  // un contacto por id
+app.post('/agregarContacto', routerContactos);
+app.put('/modificarContacto/:id', routerContactos);
+app.delete('/eliminarContacto/:id',routerContactos);
 
-
-
-
-
-
+//  ENDPOINTS DE COMPAÑIAS
+app.get('/infoCompanias', routerCompanias);  // todos los contactos 
+app.get('/infoCompania/:id', routerCompanias);  // un contacto por id
+app.post('/agregarCompania', routerCompanias);
+app.put('/modificarCompania/:id', routerCompanias);
+app.delete('/eliminarCompania/:id',routerCompanias);*/
 
 
 app.listen(port, function () {     
