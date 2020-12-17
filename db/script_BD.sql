@@ -130,6 +130,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 INSERT INTO `datawarehouse`.`usuarios`
 (`id`, `Nombre`, `Apellido`, `email`, `perfil`, `password`)
 VALUES
+(NULL, "admin", "admin", "admin@email.com", "Administrador", 1234),
 (NULL, "Ana", "Sierra", "anasierra@email.com", "Administrador", 12345678),
 (NULL, "Vanesa", "muñoz", "vanesa@email.com", "Administrador", 90123456),
 (NULL, "Yuliana", "Mesa", "yuliana@email.com", "Contactos", 78945612),

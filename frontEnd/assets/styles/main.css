@@ -153,4 +153,12 @@ header {
 .ocultarMostrar {
   display: none;
 }
+
+.ocultarform {
+  display: none;
+}
+
+.mostrarform {
+  display: block !important;
+}
 /*# sourceMappingURL=main.css.map */

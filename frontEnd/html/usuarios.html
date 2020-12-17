@@ -22,12 +22,35 @@
         </nav>
     </header>
     <main>
-    <h1 class="titulosuarios">Usuarios</h1>
-    <a class="btn btnCrearU" href="#" >Ocultar/Mostrar Formulario</a>
-   
-        <div id="ocultarform">
+     <!--<h1 class="titulosuarios">Usuarios</h1>-->
+    <a class="btn btnCrearU" href="#" > +Agregar</a> 
+
+    <section id="tabla">        
+    
+      <table id="usuarios" class="display" style="width:100%">
+          <thead>
+              <tr>
+                  <th>Selección</th>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Email</th>
+                  <th>Perfil</th>
+                  <th>Opciones</th>                
+              </tr>
+          </thead>
+          <tbody id="datosUsuarios">           
+                 <!--DATOS TODOS LOS USUARIOS-->          
+          
+          </tbody>  
+          <tfoot>
+              <!-- NOT CODE HERE -->
+          </tfoot>    
+      </table>
+    </section>
+   <section>
+        <div class="ocultarform">
             <form id="formLogin" class="formCrearUsuario" action="">
-                <h2 class="bienvenido-login">Crear Usuario</h2>
+                <h2 class="bienvenido-login">Usuario</h2>
 
                 <label class="loginLabel" for="usuario">Nombre</label>
                 <input class="login nombreCrearUsuario" type="text" placeholder="Ingrese el nombre del usuario">
@@ -41,7 +64,7 @@
                 <label class="loginLabel" for="perfil">Perfil</label>
                 <select class="login perfil">
                 <option>Administrador</option>
-                <option>Usuario</option>      
+                <option>Contacto</option>      
                 </select>
 
                 <label class="loginLabel" for="contraseña" >Contraseña</label>
@@ -50,31 +73,18 @@
               <!--<label class="loginLabel" for="contraseña" >Confirmar Contraseña</label>
                 <input class="login password confirmarPassword" type="password" placeholder="Confirme su contraseña">-->
 
-                <a class="btn btnCrearUsuario" href="#" onclick="adicionarUsuario()" >Guardar</a>
-                <a class="btn btnLimpiar" href="#" >Limpiar</a>
+               <!-- <a class="btn btnCrearUsuario" href="#" onclick="adicionarUsuario()">Crear</a>-->
+               
+
+                <div class="form-check">
+                    <a class="btn btnLimpiar" href="#" >Limpiar</a>
+                    <button id="crearUsuario" type="submit" class="btn btn-login float-right" onclick="adicionarUsuario()">Crear</button>
+                    <button  type="submit" class="btn btn-login float-right btnVolver">Volver</button>
+                   <!-- <button data-dismiss="modal"  type="submit" class="btn btn-login float-left btnCrearU" >Cerrar</button>-->
+                </div>
             </form>  
         </div>
-
-
-    <table id="usuarios" class="display" style="width:100%">
-        <thead>
-            <tr>
-                <th>Selección</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Email</th>
-                <th>Perfil</th>
-                <th>Opciones</th>                
-            </tr>
-        </thead>
-        <tbody id="datosUsuarios">           
-               <!--DATOS TODOS LOS USUARIOS-->          
-        
-        </tbody>  
-        <tfoot>
-            <!-- NOT CODE HERE -->
-        </tfoot>    
-    </table>
+      </section>
    </main>
 
    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>

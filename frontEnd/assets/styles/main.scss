@@ -138,7 +138,13 @@ header{
     color: lightslategray;
 }
 
-.ocultarMostrar{
+.ocultarMostrar{ // tabla
    display: none;    
 }
 
+.ocultarform{
+    display: none;
+}
+.mostrarform{
+    display: block !important;
+}
