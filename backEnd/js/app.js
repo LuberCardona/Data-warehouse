@@ -22,17 +22,12 @@ const routerContactos = require('../js/routes/contactos');
 const routerCompanias = require('../js/routes/companias');
 const routerCiu_Reg_Pais = require('../js/routes/ciu_region_pais');
 
-/*app.use('/usuarios', routerUsuarios);
-app.use('/contactos', routerContactos);
-app.use('/companias', routerCompanias);
-app.use('/ciuRegionPais', routerCiu_Reg_Pais);*/
-
-
 // ENDPOINT DE USUARIOS 
 app.post('/login', routerUsuarios);
 app.get('/infoUsuarios', routerUsuarios); 
+app.get('/infoUsuarios/:id', routerUsuarios); // obtener por id para modificar  
 app.post('/crearUsuario', routerUsuarios);
-app.put('/modificarUsuario/:id', routerUsuarios);
+app.put('/modificarUsuario/:id', routerUsuarios); //SS
 app.delete('/eliminarUsuario/:id',routerUsuarios);
 
 // ENDPOINT DE CONTACTOS

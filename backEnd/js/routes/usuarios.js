@@ -50,6 +50,19 @@ router.get('/infoUsuarios', (req, res)=>{
     })           
 })
 
+router.get('/infoUsuarios/:id', (req, res)=>{       // obtener por id para modificar  
+    
+    sequelize.query (`SELECT * FROM datawarehouse.usuarios  WHERE ID = ${req.params.id};`,
+    {type: sequelize.QueryTypes.SELECT}
+    ).then(result =>{ 
+
+        res.status(200).json(result);
+        console.log('resul de obt por id para mod' + result);
+    }).catch(err=>{
+        res.status(500).json(err);
+    })           
+})  
+
 
 //POST USUARIOS  - un usuario con perfil de administrador puede crear un usuario
 router.post('/crearUsuario',validaciones.validacionEmailYaExiste, validaciones.validacionDatosUsuario,  (req, res) => {    
@@ -65,7 +78,7 @@ router.post('/crearUsuario',validaciones.validacionEmailYaExiste, validaciones.v
 });
 
 
-router.put('/modificarUsuario/:id', validaciones.validarUsuarioExiste,(req, res) => {
+router.put('/modificarUsuario/:id', validaciones.validarUsuarioExiste, (req, res) => {
     sequelize.query(
         `UPDATE usuarios SET Nombre = "${req.body.Nombre}", Apellido="${req.body.Apellido}",
         email="${req.body.email}", perfil="${req.body.perfil}", password=${req.body.password} WHERE ID = ${req.params.id};`,
@@ -78,6 +91,16 @@ router.put('/modificarUsuario/:id', validaciones.validarUsuarioExiste,(req, res)
     })  
     
 });
+
+/*router.put('/modificarUsuario/:id', async (req, res) => {
+    try {
+      const { id } = req.params;        
+      await  access_db.actualizarUsuario(req.body, id);    
+      res.json(req.body);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  });*/
 
 
 router.delete('/eliminarUsuario/:id', async (req, res) => {
