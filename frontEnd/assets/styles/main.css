@@ -179,4 +179,15 @@ header {
 .bgCrearMostrar {
   background-color: #68df68;
 }
+
+.container {
+  max-width: 98%;
+  padding-right: 1px;
+  padding-left: 1px;
+}
+
+#usuarios_wrapper {
+  max-width: 98%;
+  margin-left: 10px;
+}
 /*# sourceMappingURL=main.css.map */

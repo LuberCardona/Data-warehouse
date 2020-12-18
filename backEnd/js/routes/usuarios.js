@@ -92,16 +92,6 @@ router.put('/modificarUsuario/:id', validaciones.validarUsuarioExiste, (req, res
     
 });
 
-/*router.put('/modificarUsuario/:id', async (req, res) => {
-    try {
-      const { id } = req.params;        
-      await  access_db.actualizarUsuario(req.body, id);    
-      res.json(req.body);
-    } catch (error) {
-      res.status(400).json({ error: error.message });
-    }
-  });*/
-
 
 router.delete('/eliminarUsuario/:id', async (req, res) => {
     try {

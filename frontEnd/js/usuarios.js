@@ -1,7 +1,7 @@
 
 let ocultarform = document.getElementsByClassName('ocultarform')[0];
 let tablaUsuarios = document.getElementById('usuarios');
-let agregarBtn = document.getElementsByClassName('btnCrearU')[0]; // ESTE ES AGREGAR USUSARIO
+let agregarBtn = document.getElementsByClassName('btnCrearU')[0]; 
 let btnLimpiar = document.getElementsByClassName('btnLimpiar')[0];
 let agregarUsuario = document.getElementById("agregarUsuario");
 let tabla = document.getElementById("tabla");
@@ -31,8 +31,7 @@ window.onload = function () {
                 data.forEach((e) => {
                   //  console.log(e);
                     let template = 
-                    `<tr>   
-                        
+                       `<tr>                        
                             <td>${e.Nombre}</td>
                             <td>${e.Apellido}</td>
                             <td>${e.email}</td>
@@ -42,8 +41,7 @@ window.onload = function () {
                             <button onclick="eliminarUsuario(${e.id})" data-toggle="modal" data-target="#modalBorrarUsurio" type='button' class='btn btn-danger btn-sm acc'><span class="material-icons"><i class="fa fa-trash-o" aria-hidden="true"></i>Eliminar</span></button>
                         </td>                   
                     </tr>`;
-                    datosUsuarios.insertAdjacentHTML('beforeend', template);
-                    
+                    datosUsuarios.insertAdjacentHTML('beforeend', template);                    
                 });
             });
         }).catch(error => {
@@ -64,26 +62,17 @@ function MostrarOcultarForm(){
 
 } 
 function MostrarOcultarModUsuBtn(){  
-//let modificarUsuarioBtn= document.getElementsByClassName('modificarUsuarioBtn')[0]; 
-modificarUsuarioBtn.classList.add('mostrarform');
-modificarUsuarioBtn.classList.add('bgModificar');
-crearUsuarioBtn.classList.toggle('ocultarform');
-crearUsuarioBtn.classList.add('bgCrear');
-crearUsuarioBtn.classList.remove('bgCrearMostrar');
+    modificarUsuarioBtn.classList.add('mostrarform');
+    modificarUsuarioBtn.classList.add('bgModificar');
+    crearUsuarioBtn.classList.toggle('ocultarform');
+    crearUsuarioBtn.classList.add('bgCrear');
+    crearUsuarioBtn.classList.remove('bgCrearMostrar');
 
-//crearUsuarioBtn.classList.add('ocultarform');
 }
 
-btnVolver.addEventListener('click', function () {   
-   // location.href = location.href; 
-  //  let tabla = document.getElementById('tabla');             
+btnVolver.addEventListener('click', function () {               
     tabla.classList.toggle("ocultarMostrar");
-    //let ocultarform=document.getElementsByClassName("ocultarform")[0];
-    ocultarform.classList.toggle("mostrarform"); 
-   // modificarUsuarioBtn.classList.toggle('ocultarMostrar');
-   // crearUsuarioBtn.classList.toggle('mostrarform');
-
-
+    ocultarform.classList.toggle("mostrarform");
 });
 
 // POST USUARIO
@@ -132,7 +121,7 @@ function eliminarUsuario(id) {
     }).then(res => {
         if (res.status == 200) {
             alert('Usuario eliminado');
-           location.href = location.href; // recargar navegador
+           location.href = location.href; // recargar 
 
         } else {
             console.log("error");
@@ -142,11 +131,6 @@ function eliminarUsuario(id) {
     }); 
     }
 }
-
-/// modificar usuario
-/*modificarUsuarioBtn.addEventListener('click', () => {
-  modificarUdatosEnForm();
-});*/
 
 function modificarUdatosEnForm(id) {  // muestra en formulario datos del usuario selecionado para modificar
     let jwt = sessionStorage.getItem("jwt");
@@ -163,7 +147,7 @@ function modificarUdatosEnForm(id) {  // muestra en formulario datos del usuario
                 apellidoCrearUsuario.value = data[0].Apellido;
                 emailCrearUsuario.value = data[0].email;
                 perfil.value = data[0].perfil;
-                passwordCrearUsuario.value = data[0].password;              
+                passwordCrearUsuario.value = data[0].password;             
 
              });
          } else {
@@ -173,33 +157,15 @@ function modificarUdatosEnForm(id) {  // muestra en formulario datos del usuario
              console.log(error);
          }); 
     }
-     
-   // mostrarEditarBtn();
     MostrarOcultarModUsuBtn();
     modificarUsuarioBtn.addEventListener('click', () => {
-        modificarUsuarioDb(jwt, id);
+        modificarUsuarioDb(id);
     });
-   // crearUsuarioBtn.style.display = "none";
-   // modificarUsuarioBtn.style.display = "initial";
-    
-  /*  editarUsuarioBtn.style.display = "initial";
-  /*  editarUsuarioBtn.addEventListener('click', () => {
-    editarUsuarioFunc(jwt, usuarioId);
-    });*/
 }
 
-/*function mostrarEditarBtn(){ 
 
- //   crearUsuarioBtn.style.display = "none";   
-  // crearUsuarioBtn.classList.toggle('mostrarform');
-  crearUsuarioBtn.classList.toggle('ocultarform');   
-  modificarUsuarioBtn.classList.toggle('mostrarform');
-}*/
-
-
-
-function modificarUsuarioDb(jwt, id) {
-    console.log(id);
+function modificarUsuarioDb(id) {
+    //console.log(id);
     if (jwt != null) {
         fetch(`http://localhost:3000/modificarUsuario/${id}`, {
              method: 'PUT',
@@ -214,7 +180,7 @@ function modificarUsuarioDb(jwt, id) {
             console.log(perfil.value);
             if (res.status == 200) {
                 alert("Usuario Actualizado");
-                location.href = location.href; /////////// ---->>>>> ////////
+                location.href = location.href; 
 
             } else {
                 console.log("error");
@@ -222,7 +188,6 @@ function modificarUsuarioDb(jwt, id) {
         }).catch(error => {
              console.log(error);
         }); 
-    }
-   
+    }   
 };
 

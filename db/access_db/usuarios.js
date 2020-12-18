@@ -10,16 +10,7 @@ const eliminarUsuario = async (id) => {
   }; 
 
 
-/*const actualizarUsuario = async (body, id) => { // S
-    return await sequelize.query(
-      `UPDATE usuarios SET Nombre="${body.Nombre}",  Apellido="${body.Apellido}",
-      email="${body.email}", perfil="${body.perfil}", password="${body.password}",  WHERE ID = ${id};`,
-      { type: sequelize.QueryTypes.UPDATE }
-    );
-};*/
-
 
   module.exports = {
     eliminarUsuario,
-    //actualizarUsuario
 };
