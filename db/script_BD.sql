@@ -177,11 +177,11 @@ INSERT INTO `datawarehouse`.`contactos`
 VALUES
 (NULL, "Camila", "Panto", "UX Designer", "camila@emai.com", "Correo Electrónico", 0, 1, 1),
 (NULL, "Agustin", "Soria", "UI Designer", "agustin@email.com", "WhatsApp", 25, 2, 2),
-(NULL, "Milena", "Soria", "Developer", "milena@email.com","Correo Electrónico", 50, 3, 3),
-(NULL, "Milena", "Soria", "Developer", "milena@email.com",  "WhatsApp", 75, 6, 4),
-(NULL, "Milena", "Soria", "Developer", "milena@email.com", "Correo Electrónico", 100, 4, 4),
-(NULL, "Milena", "Soria", "Developer", "milena@email.com", "Correo Electrónico", 90, 7, 4),
-(NULL, "Milena", "Soria", "Developer", "milena@email.com", "WhatsApp", 60, 5, 5);
+(NULL, "Milena1", "Soria1", "Developer", "milena1@email.com","Correo Electrónico", 50, 3, 3),
+(NULL, "Milena2", "Soria2", "Developer", "milena2@email.com",  "WhatsApp", 75, 6, 4),
+(NULL, "Milena3", "Soria3", "Developer", "milena3@email.com", "Correo Electrónico", 100, 4, 4),
+(NULL, "Milena4", "Soria4", "Developer", "milena4@email.com", "Correo Electrónico", 90, 7, 4),
+(NULL, "Milena5", "Soria5", "Developer", "milena5@email.com", "WhatsApp", 60, 5, 5);
 
 
 
