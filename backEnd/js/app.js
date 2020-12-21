@@ -4,6 +4,7 @@ const port = 3000;
 app.use(express.json());
 
 
+
 const helmet = require('helmet');
 app.use(helmet.permittedCrossDomainPolicies({permittedPolicies: "by-content-type"}));
 
@@ -34,13 +35,13 @@ app.delete('/eliminarUsuario/:id',routerUsuarios);
 
 app.get('/infoContactos', routerContactos);  // todos los contactos 
 app.get('/infoContacto/:id', routerContactos);  // un contacto por id
-app.post('/agregarContacto', routerContactos);
+app.post('/agregarContactoN', routerContactos);
 app.put('/modificarContacto/:id', routerContactos);
 app.delete('/eliminarContacto/:id',routerContactos);
 
-//  ENDPOINTS DE COMPAÑIAS
-app.get('/infoCompanias', routerCompanias);  // todos los contactos 
-app.get('/infoCompania/:id', routerCompanias);  // un contacto por id
+//  ENDPOINTS DE companias
+app.get('/infoCompanias', routerCompanias);  // todas las companias
+app.get('/infoCompania/:id', routerCompanias);  // una compañia por id
 app.post('/agregarCompania', routerCompanias);
 app.put('/modificarCompania/:id', routerCompanias);
 app.delete('/eliminarCompania/:id',routerCompanias);
@@ -48,7 +49,7 @@ app.delete('/eliminarCompania/:id',routerCompanias);
 // ENDPOINTS DE CIUDADES
 app.get('/infoCiudades', routerCiu_Reg_Pais);  // todos las ciudades 
 app.get('/infoCiudades/:paisId', routerCiu_Reg_Pais);  //  ciudades por id del Pais
-app.post('/crearCuidad', routerCiu_Reg_Pais);
+app.post('/crearCiudad', routerCiu_Reg_Pais);
 app.put('/modificarCiudad/:id', routerCiu_Reg_Pais);
 app.delete('/eliminarCiudad/:id', routerCiu_Reg_Pais);
 

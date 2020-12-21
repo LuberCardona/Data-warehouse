@@ -18,7 +18,7 @@
                     <a  class="listaMenu menu" href="contactos.html">Contactos</a>
                     <a  class="listaMenu menu" href="compañias.html">Compañías</a>                    
                     <a  class="listaMenu menu removeUserPage" href="usuarios.html">Usuarios</a>
-                    <a  class="listaMenu menu" href="region_cuidad.html">Región / Ciudad</a>
+                    <a  class="listaMenu menu" href="region_ciudad.html">Región / Ciudad</a>
                 </li>            
             </ul>
         </nav>
@@ -27,30 +27,21 @@
         <hr>
         <h2 class="titulosuarios">Contactos</h2>
         <hr>
-         <!-- <section id="buscador">
-              <div class="containerBusc">                        
-                <button id="agregarContacto" data-toggle="modal" data-target="#modalAgregarContacto" class="btn busc btnCrearU"><i class="fa fa-plus" aria-hidden="true"></i> +Agregar</button>              
-              </div>
-          </section>-->
         <section id="buscador">
           <div class="containerBusc">
-            <button type="button" class="btn busc btnCrearU" id="agregarContacto" data-bs-toggle="modal" data-bs-target="#eliminarVariosContactos">
+            <button type="button" class="btn busc btnCrearU" id="agregarContacto" data-bs-toggle="modal" data-bs-target="#agregarContactoModal">
               +Agregar
             </button>
           </div>
         </section>
-    
-           <!-- <div class="count">
-              <h5 id="count">0 Seleccionados</h5>
-              <button id="multDelete" class="btn btn-danger" data-toggle="modal" data-target="#modalMultDelete">Eliminar Contactos</button>
-            </div>-->
+
         <div class="count">
             <h5 id="count">0 Seleccionados</h5>
             <button type="button" class="btn btn-danger" id="multDelete" data-bs-toggle="modal" data-bs-target="#eliminarVariosContactos">
               Eliminar
             </button>
         </div>            
-    
+<!-- TABLA GET CONTACTOS -->  
             <section id="list">
                 <div class="container">
                   <table id="tablaContactos" class="display" style="width:100%">
@@ -63,7 +54,7 @@
                         <th>email</th>
                         <th>Canal_favorito</th>
                         <th>Interes</th>
-                        <th>Cuidad</th>
+                        <th>Ciudad</th>
                         <th>Compañia</th>
                         <th>Acciones</th>  
                       </tr>
@@ -78,7 +69,7 @@
                 </div>
             </section> 
 
-
+<!--MODAL ELIMINAR UNO O VARIOS CONTACTOS-->
             <div class="modal fade" id="eliminarVariosContactos" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
@@ -95,164 +86,143 @@
                     </div>
                   </div>
                 </div>
-              </div>              
-    
-          <!--  <div id="modalMultDelete" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="title" aria-hidden="true">
-              <div class="modal-dialog" role="document">
+            </div>      
+            
+<!-- MODAL AGREGAR CONTACTO agregarContactoModal -->  
+
+            <div class="modal fade" id="agregarContactoModal" tabindex="-1" aria-hidden="true">
+              <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h2>Eliminar Contactos selecionados</h2>
+                    <h5 class="modal-title">CONTACTO</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
+          <!--BODY DEL MODAL // FORMULARIO PRA INGRESAR DATOS-->
                   <div class="modal-body">
-                    <h5 id="msgMultDelete"> Esta seguro de eliminar Todos los Contactos Seleccionados?</h5>
-                  </div>
-                  <div class="modal-footer">
-                    <button id="deleteMultContact" class="btn btn-danger" type="button" data-dismiss="modal">Eliminar Contactos</button>
-                    <button class="btn btn-danger" type="button" data-dismiss="modal">Cerrar</button>
-                  </div>
-                </div>
-              </div>
-            </div>    -->   
-    
-            <div id="modalAgregarContacto" class="modal fade center" tabindex="-1" role="dialog" aria-labelledby="title" aria-hidden="true">
-                <div class="modal-dialog  center" role="document">
-                    <div class="modal-content  center">
-                        <div id="modal-header" class="modal-header">
-                            <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        </div>
-                        <div id="modal-body" class="modal-body">
-                            <section class="login-block">
-                                <div class="container">
-                                  <div class="row">
-                                    <div class="col-md-4 login-sec">
-                                      <h2 class="text-center">Contacto</h2>
-                                      <div class="form-group">
-                                        <label for="nombre">Nombre</label>
-                                        <input required id='nombre' type="text" class="form-control" placeholder="Nombre">
-                                      </div>
-                          
-                                      <div class="form-group">
-                                        <label for="apellido">Apellido</label>
-                                        <input required id='apellido' type="text" class="form-control" placeholder="Apellido">
-                                      </div>
-                          
-                                      <div class="form-group">
-                                          <label for="cargo">Cargo</label>
-                                          <input required id='cargo' type="text" class="form-control" placeholder="Cargo">
-                                      </div>
-                          
-                                      <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <input required id='email' type="email" class="form-control" placeholder="Email">
-                                      </div>
-                          
-                                      <div class="form-group">
-                                          <label for="compania">Compañía</label>
-                                          <select id="compania" class="form-control" placeholder="Seleccionar...">
-                                            <option id="fOptCom" value="0">Seleccionar...</option>
-                                            <!-- CODE HERE -->
-                                          </select>
-                                      </div>
-                          
-                                      <div class="form-group">
-                                          <label for="region">Región</label>
-                                          <select id="region" class="form-control" placeholder="Seleccionar...">
-                                            <option id="fOptReg" value="0">Seleccionar...</option>
-                                            <!-- CODE HERE -->
-                                          </select>
-                                      </div>
-                          
-                                      <div class="form-group">
-                                          <label for="pais">País</label>
-                                          <select id="pais" class="form-control" placeholder="Seleccionar...">
-                                            <option id="fOptPais" value="0">Seleccionar...</option>
-                                            <!-- CODE HERE -->
-                                          </select>
-                                      </div>
-                          
-                                      <div class="form-group">
-                                          <label for="ciudad">Ciudad</label>
-                                          <select id="ciudad" class="form-control" placeholder="Seleccionar...">
-                                            <option id="fOptCiud" value="0">Seleccionar...</option>
-                                            <!-- CODE HERE -->
-                                          </select>
-                                      </div>
-                          
-                                      <div class="form-group">
-                                        <label for="interes">Interés</label>
-                                          <select id="interes" class="form-control" placeholder="Seleccionar...">
-                                            <option value="selec">Seleccionar...</option>
-                                            <option value="0">0</option>
-                                            <option value="25">25</option>
-                                            <option value="50">50</option>
-                                            <option value="75">75</option>
-                                            <option value="100">100</option>
-                                          </select>
-                                      </div>
-                          
-                                      <div class="form-group">
-                                          <label for="contacto1">Canal de Contacto</label>
-                                          <select id="contacto1" class="form-control" placeholder="Seleccionar...">
-                                            <option value="0">Seleccionar...</option>
-                                            <option value="WhatsApp">WhatsApp</option>
-                                            <option value="Email">Email</option>
-                                          </select>
-                                      </div>
-                          
-                                      <div class="form-group">
-                                          <label for="cuenta1">Correo Electrónico o Número Telefónico</label>
-                                          <input id='cuenta1' type="text" class="form-control" placeholder="Escriba aquí">
-                                      </div>
-                          
-                                      <div class="form-group">
-                                          <p>
-                                            Preferencias:<br>
-                                            <input  type="radio" name="fav" value="0"> Canal Favorito<br>
-                                            <input type="radio" name="nomolest" value="20"> No Molestar<br>
-                                            <input type="radio" name="interes" value="50"> Opción 3<br>
-                                          </p>
-                                      </div>
-                                              
-                                      <div class="form-check">
-                                        <button id="crearContacto" type="submit" class="btn btn-login float-right">Crear</button>
-                                        <button id="editarContacto" type="submit" class="btn btn-login float-right">Editar</button>
-                                        <button data-dismiss="modal"  type="submit" class="btn btn-login float-left">Cerrar</button>
-                                      </div>
-                          
-                                    </div>
-                                    <div class="col-md-8 banner-sec">
-                                    </div>
-                                  </div>
-                              </section>
-                          
-                        </div>
-                        <div id="modal-footer" class="modal-footer">
+                    <section class="login-block">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-md-4 login-sec">
+                            <h2 class="text-center">Contacto</h2>
+                            <div class="form-group">
+                              <label for="nombre">Nombre</label>
+                              <input required id='nombre' type="text" class="form-control login nombreCrearUsuario" placeholder="Nombre">
+                            </div>
                 
+                            <div class="form-group">
+                              <label for="apellido">Apellido</label>
+                              <input required id='apellido' type="text" class="form-control login nombreCrearUsuario" placeholder="Apellido">
+                            </div>
+                
+                            <div class="form-group">
+                                <label for="cargo">Cargo</label>
+                                <input required id='cargo' type="text" class="form-control login nombreCrearUsuario" placeholder="Cargo">
+                            </div>
+                
+                            <div class="form-group">
+                              <label for="email">email</label>
+                              <input required id='email' type="email" class="form-control login nombreCrearUsuario" placeholder="Email">
+                            </div>
+
+                            <div class="form-group">
+                              <label for="contacto1">Canal_favorito</label>
+                              <select id="contacto1" class="form-control login nombreCrearUsuario">
+                                <option value="0">Seleccionar canal de contacto...</option>
+                                <option value="WhatsApp">WhatsApp</option>
+                                <option value="Email">Correo Electrónico</option>
+                              </select>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="interes">Interés</label>
+                              <select id="interes" class="form-control login nombreCrearUsuario" placeholder="Seleccionar...">
+                                <option value="selec">Seleccionar...</option>
+                                <option value="0">0</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="75">75</option>
+                                <option value="100">100</option>
+                              </select>
+                          </div>
+                
+                            
+                
+                            <div class="form-group">
+                                <label for="region">Región</label>
+                                <select id="region" class="form-control login nombreCrearUsuario" placeholder="Seleccionar...">
+                                  <option id="fOptReg" value="0">Seleccionar...</option>
+                                  <!-- AQUI: <option> GET DE REGIONES </option>-->
+                                </select>
+                            </div>
+                
+                            <div class="form-group">
+                                <label for="pais">País</label>
+                                <select id="pais" class="form-control login nombreCrearUsuario" placeholder="Seleccionar...">
+                                  <option id="fOptPais" value="0">Seleccionar...</option>
+                                  <!-- AQUI: <option> GET DE PAIS POR ID REGION </option> -->
+                                </select>
+                            </div>
+                
+                            <div class="form-group">
+                                <label for="ciudad">Ciudad</label>
+                                <select id="ciudad" class="form-control login nombreCrearUsuario" placeholder="Seleccionar...">
+                                  <option id="fOptCiud" value="0">Seleccionar...</option>
+                                  <!-- AQUI: <option> GET DE CIUDADES POR ID PAIS</option> -->
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                              <label for="compania">Compañía</label>
+                              <select id="compania" class="form-control login nombreCrearUsuario" placeholder="Seleccionar...">
+                                <option id="fOptCom" value="0">Seleccionar...</option>
+                                <!-- AQUI: <option> GET DE COMPAÑIAS </option>   -->
+                              </select>
+                          </div>                                       
+                
+                            
+                
+                           <!-- <div class="form-group">
+                                <label for="cuenta1">email o Telefono</label>
+                                <input id='cuenta1' type="text" class="form-control login nombreCrearUsuario" placeholder="Escriba aquí">
+                            </div>-->
+                            <!--
+                            <div class="form-check">
+                              <p>Preferencias:<br></p>
+                              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                              <label class="form-check-label" for="flexRadioDefault1">
+                                Canal_favorito
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                              <label class="form-check-label" for="flexRadioDefault2">
+                                Ninguno
+                              </label>
+                            </div>-->
+
+
+                            <!--
+                            <div class="form-group">
+                                <p>
+                                  Preferencias:<br>
+                                  <input  type="radio" name="fav" value="0"> Canal_favorito<br>
+                                  <input type="radio" name="nomolest" value="20"> Ninguno<br>
+                                </p>
+                            </div>  -->
+                            
+                            
                         </div>
-                    </div>
-                </div>
-            </div> 
-            <!-- modalEliminarCONTACTO -->
-           <div id="modalBorrarContacto" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="Eliminar contacto" aria-hidden="true">
-                <div class="modal-dialog" role="document"> 
-                  <div class="modal-content">  <!--contenedor del modal eliminar-->
-                    <div class="modal-header"> <!--encabezado modal-->
-                      <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    </div>
-                    <div id="modal-body" class="modal-body"> <!--body del modal-->
-                        <h2>Desea Eliminar el Contacto?</h2>
-                    </div>
-                    <div class="modal-footer">
-                      <button id="eliminarContacto" class="btn btn-danger" type="button" data-dismiss="modal">Eliminar</button>
-                      <button class="btn btn-danger float-right" type="button" data-dismiss="modal">Cerrar</button>
-                    </div>
+                    </section>                    
+                  </div>
+          <!--FIN BODY MODAL-->
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" id="crearContacto" class="btn btn-primary btnCrearU">Crear</button>
+                    <button type="button" id="editarContacto" class="btn btn-primary btn-warning">Modificar</button>
                   </div>
                 </div>
               </div>
-
-              
-           
+            </div>     
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script> 

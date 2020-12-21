@@ -31,7 +31,7 @@ router.get('/infoContacto/:id', async (req, res) => {
 
 // POST CONTACTOS - el usuario con perfil de administrador puede crear un CONTACTO
 
-router.post('/agregarContacto', async (req, res)=>{
+router.post('/agregarContactoN', async (req, res)=>{
   try {
     const contactoXemail = await access_db.obtenerContactoxEmail(req.body);
     if (contactoXemail.length) {

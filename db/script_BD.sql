@@ -14,7 +14,7 @@ USE `datawarehouse` ;
 -- -----------------------------------------------------
 -- Table `datawarehouse`.`compañias`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `datawarehouse`.`compañias` (
+CREATE TABLE IF NOT EXISTS `datawarehouse`.`companias` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `Nombre` VARCHAR(100) NOT NULL,
   `Direccion` VARCHAR(150) NOT NULL,
@@ -22,8 +22,8 @@ CREATE TABLE IF NOT EXISTS `datawarehouse`.`compañias` (
   `Telefono` VARCHAR(45) NOT NULL,
   `ciudad_id` INT NOT NULL,
   PRIMARY KEY (`id`),
- INDEX `fk_compañias_ciudades_idx` (`ciudad_id` ASC) VISIBLE,
-  CONSTRAINT `fk_compañias_ciudades`
+ INDEX `fk_companias_ciudades_idx` (`ciudad_id` ASC) VISIBLE,
+  CONSTRAINT `fk_companias_ciudades`
     FOREIGN KEY (`ciudad_id`)
     REFERENCES `datawarehouse`.`ciudades` (`id`)
     ON DELETE NO ACTION
@@ -44,13 +44,13 @@ CREATE TABLE IF NOT EXISTS `datawarehouse`.`contactos` (
   `Canal_favorito` VARCHAR(100) NOT NULL,
   `Interes` VARCHAR(100) NOT NULL,
   `ciudad_id` INT NOT NULL,
-  `compañia_id` INT NOT NULL,  
+  `compania_id` INT NOT NULL,  
   PRIMARY KEY (`id`),
-   INDEX `fk_contactos_compañias_idx` (`compañia_id` ASC) VISIBLE,
+   INDEX `fk_contactos_companias_idx` (`compania_id` ASC) VISIBLE,
   INDEX `fk_contactos_ciudades_idx` (`ciudad_id` ASC) VISIBLE,
-  CONSTRAINT `fk_contactos_compañias`
-    FOREIGN KEY (`compañia_id`)
-    REFERENCES `datawarehouse`.`compañias` (`id`)
+  CONSTRAINT `fk_contactos_companias`
+    FOREIGN KEY (`compania_id`)
+    REFERENCES `datawarehouse`.`companias` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_contactos_ciudades`
@@ -160,10 +160,12 @@ VALUES
 (NULL, "Bogota", 2),
 (NULL, "Cucuta", 2),
 (NULL, "Medellin", 2),
-(NULL, "Cuidad de Mexico", 5),
-(NULL, "Tijuana", 5);
+(NULL, "Ciudad de Mexico", 5),
+(NULL, "Tijuana", 5),
+(NULL, "Miami", 6);
 
-INSERT INTO `datawarehouse`.`compañias`
+
+INSERT INTO `datawarehouse`.`companias`
 (`id`, `Nombre`, `Direccion`, `email`, `Telefono`, `ciudad_id`)
 VALUES
 (NULL, "Rappi", "cll rapi 123", "rappi@email.com", "4451123456", 1),
@@ -173,7 +175,7 @@ VALUES
 (NULL, "Exito", "cll exito 24-18", "exito@email.com", "5715554444", 5);
 
 INSERT INTO `datawarehouse`.`contactos`
-(`id`, `Nombre`, `Apellido`, `Cargo`, `email`, `Canal_favorito`, `Interes`, `ciudad_id`, `compañia_id`)
+(`id`, `Nombre`, `Apellido`, `Cargo`, `email`, `Canal_favorito`, `Interes`, `ciudad_id`, `compania_id`)
 VALUES
 (NULL, "Camila", "Panto", "UX Designer", "camila@emai.com", "Correo Electrónico", 0, 1, 1),
 (NULL, "Agustin", "Soria", "UI Designer", "agustin@email.com", "WhatsApp", 25, 2, 2),
@@ -182,6 +184,3 @@ VALUES
 (NULL, "Milena3", "Soria3", "Developer", "milena3@email.com", "Correo Electrónico", 100, 4, 4),
 (NULL, "Milena4", "Soria4", "Developer", "milena4@email.com", "Correo Electrónico", 90, 7, 4),
 (NULL, "Milena5", "Soria5", "Developer", "milena5@email.com", "WhatsApp", 60, 5, 5);
-
-
-

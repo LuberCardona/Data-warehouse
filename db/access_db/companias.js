@@ -2,16 +2,16 @@ const sequelize = require('../../../DataWarehouse/backEnd/js/conexiondb');
 
 //detallesCompanias
 const infoCompanias = `SELECT 
-compañias.id AS id_Comp,  
-compañias.Nombre AS nom_Comp,
-compañias.Direccion AS direccion_Comp,
-compañias.email AS email_Comp,
-compañias.Telefono AS telefono_Comp,
+companias.id AS id_Comp,  
+companias.Nombre AS nom_Comp,
+companias.Direccion AS direccion_Comp,
+companias.email AS email_Comp,
+companias.Telefono AS telefono_Comp,
 ciudades.id AS id_Ciudad,
 ciudades.Nombre AS nom_Ciudad
-FROM compañias compañias
+FROM companias companias
 INNER JOIN ciudades ciudades
-ON compañias.ciudad_id = ciudades.id`;
+ON companias.ciudad_id = ciudades.id`;
 
 const obtenerCompanias = async () => { ///encontrarTodos
     return await sequelize.query(infoCompanias, {
@@ -20,13 +20,13 @@ const obtenerCompanias = async () => { ///encontrarTodos
 };
 
 const obtenerCompaniaxEmail = async (body) => { //encontrarPorEmail
-  return await sequelize.query(`SELECT * FROM compañias WHERE EMAIL = "${body.email}";`, {
+  return await sequelize.query(`SELECT * FROM companias WHERE EMAIL = "${body.email}";`, {
     type: sequelize.QueryTypes.SELECT,
   });
 };
 
 const obtenerCompaniaxId = async (id) => { //encontrarPorId
-  return await sequelize.query(`SELECT * FROM compañias WHERE ID = "${id}";`, {
+  return await sequelize.query(`SELECT * FROM companias WHERE ID = "${id}";`, {
     type: sequelize.QueryTypes.SELECT,
   });
 };
@@ -42,7 +42,7 @@ const agregarCompania = async (body) => { // agregar
 
 const modificarCompania = async (body, id) => { //actualizarCompania
   return await sequelize.query(
-    `UPDATE compañias SET 
+    `UPDATE companias SET 
     Nombre="${body.Nombre}", 
     Direccion="${body.Direccion}",
     email="${body.email}",
@@ -55,7 +55,7 @@ const modificarCompania = async (body, id) => { //actualizarCompania
 
 const eliminarCompania = async (id) => { //eliminarCompania
   return await sequelize.query(
-    `DELETE FROM compañias WHERE ID = ${id};`,
+    `DELETE FROM companias WHERE ID = ${id};`,
     { type: sequelize.QueryTypes.DELETE }
   );
 };

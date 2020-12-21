@@ -93,7 +93,7 @@ router.post('/crearPais', async (req, res)=>{ // crear pais so no existe por nom
     }
 });
 
-router.post('/crearCuidad', async (req, res)=>{ // CREAR CIUDAD SI NO EXISTE POR DESCRIP
+router.post('/crearCiudad', async (req, res)=>{ // CREAR CIUDAD SI NO EXISTE POR DESCRIP
     try {
       const crearCiudad = await access_db.obtenerCiudadxDescripcion(req.body);
       if (crearCiudad.length) {

@@ -9,15 +9,15 @@ contactos.Cargo AS cargo,
 contactos.email AS email,
 contactos.Canal_favorito AS canal_favorito,
 contactos.Interes AS interes,
-ciudades.id AS id_Cuidad, 
+ciudades.id AS id_Ciudad, 
 ciudades.Nombre AS nom_Ciudad,
-compañias.id AS id_Compañia, 
-compañias.Nombre AS nom_Compañia
+companias.id AS id_Compania, 
+companias.Nombre AS nom_Compania
 FROM contactos Contactos
 INNER JOIN ciudades ciudades
 ON contactos.ciudad_id = ciudades.id
-INNER JOIN compañias compañias
-ON contactos.compañia_id = compañias.id`;
+INNER JOIN companias companias
+ON contactos.compania_id = companias.id`;
 
 const obtenerContactos = async () => {  ///encontrarTodos
   return await sequelize.query(InfoContactos, {
@@ -39,9 +39,9 @@ const obtenerContactoxId = async (id) => {
 
 const agregarContacto= async (body) => { //agregar
   return await sequelize.query(
-    `INSERT INTO contactos (Nombre, Apellido, Cargo, email, Canal_favorito, Interes, cuidad_id, compañia_id) 
+    `INSERT INTO contactos (Nombre, Apellido, Cargo, email, Canal_favorito, Interes, ciudad_id, compania_id) 
      VALUES ("${body.Nombre}","${body.Apellido}","${body.Cargo}","${body.email}","${body.Canal_favorito}", 
-     "${body.Interes}", "${body.cuidad_id}", ${body.compañia_id});`,
+     "${body.Interes}", "${body.ciudad_id}", ${body.compania_id});`,
     { type: sequelize.QueryTypes.INSERT }
   );
 };
@@ -55,8 +55,8 @@ const modificarContacto = async (body, id) => {  //actualizarContacto
     email="${body.email}",
     Canal_favorito="${body.Canal_favorito}",
     Interes="${body.Interes}",
-    cuidad_id=${body.cuidad_id},
-    compañia_id=${body.compañia_id}, 
+    ciudad_id=${body.cuidad_id},
+    compania_id=${body.compañia_id}, 
     WHERE ID = ${id};`,
     { type: sequelize.QueryTypes.UPDATE }
   );
