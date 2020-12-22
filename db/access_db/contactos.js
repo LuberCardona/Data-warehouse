@@ -41,7 +41,7 @@ const agregarContacto= async (body) => { //agregar
   return await sequelize.query(
     `INSERT INTO contactos (Nombre, Apellido, Cargo, email, Canal_favorito, Interes, ciudad_id, compania_id) 
      VALUES ("${body.Nombre}","${body.Apellido}","${body.Cargo}","${body.email}","${body.Canal_favorito}", 
-     "${body.Interes}", "${body.ciudad_id}", ${body.compania_id});`,
+     "${body.Interes}", ${body.ciudad_id}, ${body.compania_id});`,
     { type: sequelize.QueryTypes.INSERT }
   );
 };
@@ -55,12 +55,14 @@ const modificarContacto = async (body, id) => {  //actualizarContacto
     email="${body.email}",
     Canal_favorito="${body.Canal_favorito}",
     Interes="${body.Interes}",
-    ciudad_id=${body.cuidad_id},
-    compania_id=${body.compañia_id}, 
+    ciudad_id=${body.ciudad_id},
+    compania_id=${body.compania_id}
     WHERE ID = ${id};`,
     { type: sequelize.QueryTypes.UPDATE }
   );
 };
+
+
 
 const eliminarContacto = async (id) => {
   return await sequelize.query(

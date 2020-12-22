@@ -59,11 +59,16 @@ window.onload = function () {
                         <td>${e.nom_Ciudad}</td>
                         <td>${e.nom_Compania}</td>                       
                         
-                        <td>                         
+                        <td>
+                            <button type="button" onclick="getInfoContactoAmodificar(${e.id_Contacto})" class="btn btn-warning" id="modificarBtnMostrarModal" data-bs-toggle="modal" data-bs-target="#agregarContactoModal">
+                            Modificar
+                            </button>
+                            
                             <button type="button" class="btn btn-danger"  onclick="eliminarSoloUnContacto(${e.id_Contacto})" data-bs-toggle="modal" data-bs-target="#eliminarVariosContactos">
                              Eliminar
                             </button>
-                        </td></tr>`;
+                        </td>
+                    </tr>`;
                     rows.insertAdjacentHTML('beforeend', template);
                 });
             });
@@ -85,13 +90,15 @@ window.onload = function () {
     });
     crearContactoBtn.addEventListener('click', () => {
     agregarContactoN(jwt);
-    });
+    });    
     
 };
 
 
 
-//<button  onclick="validarActualizar(${e.id_Contacto})" type='button' data-toggle="modal" data-target="#modalAgregarContacto" class='btn btn-info btn-warning btn-sm acc'><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Modificar</button>   
+//onclick="validarActualizar(${e.id_Contacto})"
+
+
 
 // eliminar varios contactos  seleccionados
 let idsContacts = [];
@@ -296,4 +303,71 @@ function agregarContactoN(){
         });
     } 
     
+}
+
+
+// modal modificar sin btn crear - GET DE CONTACTOS POR ID
+
+function getInfoContactoAmodificar(id_Contacto) {
+    if (jwt != null) {
+        fetch(`http://localhost:3000/infoContacto/${id_Contacto}`, {
+             method: 'GET',
+             headers: { "Authorization": "Bearer " + jwt }
+     }).then(res => {
+         if (res.status == 200) {
+             res.json().then(data => {
+                nombre.value = data[0].Nombre;
+                apellido.value = data[0].Apellido;
+                cargo.value = data[0].Cargo;
+                emailC.value = data[0].email;
+                canal_favorito.value = data[0].Canal_favorito;
+                interes.value = data[0].Interes;
+                listaCompanias.value = data[0].compania_id;        
+               
+                console.log(data);
+             });
+         } else {
+             console.log("error");
+             }
+         }).catch(error => {
+             console.log(error);
+         }); 
+    }
+    crearContactoBtn.style.display = "none";
+    editarContactoBtn.style.display = "initial";
+    editarContactoBtn.addEventListener('click', () => {
+    editarContactoN(jwt, id_Contacto);
+    }); //  BTN MODIFCAR DEL MODAL
+}
+
+// FUNCION MODIFICAR CONTACTO POR ID
+
+function editarContactoN(jwt, id_Contacto) {
+    //console.log(id_Contacto);
+    if (jwt != null) {
+        fetch(`http://localhost:3000/modificarContacto/${id_Contacto}`, {
+             method: 'PUT',
+             body: `{
+                "Nombre": "${nombre.value}",
+                "Apellido": "${apellido.value}",
+                "Cargo": "${cargo.value}",
+                "email": "${emailC.value}",
+                "Canal_favorito": "${canal_favorito.value}",
+                "Interes": "${interes.value}",
+                "ciudad_id": ${listaCiudades.value},
+                "compania_id": ${listaCompanias.value}
+            }`,
+            headers:{"Content-Type":"application/json"}
+        }).then(res => {
+            if (res.status == 200) {
+                alert("Contacto Actualizado");
+                location.href = location.href; 
+
+            } else {
+                console.log("error");
+            }
+        }).catch(error => {
+             console.log(error);
+        }); 
+    }
 }

@@ -50,7 +50,9 @@ router.put('/modificarContacto/:id', async (req, res) => {
   try {
     const { id } = req.params;      
     await access_db.modificarContacto(req.body, id);
+
     res.json(req.body);
+    console.log(id);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
