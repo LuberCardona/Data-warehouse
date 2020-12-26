@@ -40,7 +40,7 @@ window.onload = function () {
                             <td>${e.telefono_Comp}</td>
                             <td>${e.nom_Ciudad}</td>                            
                             <td>
-                              <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#agregarCompaniaModal">
+                              <button type="button" class="btn btn-warning" onclick="validarActualizar(${e.id_Comp})" data-bs-toggle="modal" data-bs-target="#agregarCompaniaModal">
                                 Modificar
                               </button>                             
 
@@ -74,7 +74,7 @@ window.onload = function () {
             
 };   
 
-//onclick="validarActualizar(${e.id_Comp})" 
+
 
 
 // funcion eliminar compañias // DELETE
@@ -165,22 +165,22 @@ function agregarCompaniaN(jwt) {
 
 
 // modificar compañia
-/*
-function validarActualizar(companiaId) {
+
+function validarActualizar(compania_id) {
     let jwt = sessionStorage.getItem("jwt");
     if (jwt != null) {
-        fetch(`http://localhost:7000/companias/${companiaId}`, {
+        fetch(`http://localhost:3000/infoCompania/${compania_id}`, {
              method: 'GET',
              headers: { "Authorization": "Bearer " + jwt }
      }).then(res => {
          if (res.status == 200) {
              res.json().then(data => {
-                nombre.value = data[0].nombre;
-                direccion.value = data[0].direccion;
-                email.value = data[0].email;
-                telefono.value = data[0].telefono;
-                listaCiudades.value = data[0].ciudadId;
-                console.log(data);
+                nombreC.value = data[0].Nombre;
+                direccionC.value = data[0].Direccion;
+                emailComp.value = data[0].email;
+                telefono.value = data[0].Telefono;
+                listaCiudades.value = data[0].ciudad_id;
+                //console.log(data);
              });
          } else {
              console.log("error");
@@ -191,30 +191,30 @@ function validarActualizar(companiaId) {
     }
     crearCompaniaBtn.style.display = "none";
     editarCompaniaBtn.style.display = "initial";
-    editarCompaniaBtn.addEventListener('click', () => {
-    editarCompaniaFunc(jwt, companiaId);
+    editarCompaniaBtn.addEventListener('click', () => { // clic btn modificar del modal
+    editarCompaniaFunc(jwt, compania_id);
     });
 }
 
 
-function editarCompaniaFunc(jwt, companiaId) {
-    console.log(companiaId);
+function editarCompaniaFunc(jwt, compania_id) {
+    console.log(compania_id);
 
     if (jwt != null) {
-        fetch(`http://localhost:7000/companias/${companiaId}`, {
+        fetch(`http://localhost:3000/modificarCompania/${compania_id}`, {
              method: 'PUT',
              body: `{
-                "nombre": "${nombre.value}",
-                "direccion": "${direccion.value}",
-                "email": "${email.value}",
-                "telefono": ${telefono.value},
-                "ciudadId": ${listaCiudades.value}
+                "Nombre": "${nombreC.value}",
+                "Direccion": "${direccionC.value}",
+                "email": "${emailComp.value}",
+                "Telefono": ${telefono.value},
+                "ciudad_id": ${listaCiudades.value}
             }`,
             headers:{"Content-Type":"application/json"}
         }).then(res => {
             if (res.status == 200) {
-                alert("Compañía Actualizado con Éxito!");
-                location.href = location.href; /////////// ---->>>>> ////////
+                alert("Compañía modificada");
+               location.href = location.href; //recargar
 
             } else {
                 console.log("error");
@@ -224,6 +224,6 @@ function editarCompaniaFunc(jwt, companiaId) {
         }); 
     }
 }
-*/
+
 
 
