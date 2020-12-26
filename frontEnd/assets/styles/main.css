@@ -121,8 +121,8 @@ header {
 }
 
 .btn, .btnCrearUsuario {
-  width: 100px;
-  margin: 15px;
+  width: 90px;
+  margin: 5px;
   -ms-grid-column-align: center;
       justify-self: center;
   -webkit-text-decoration-line: none;
@@ -184,6 +184,8 @@ header {
   max-width: 98%;
   padding-right: 1px;
   padding-left: 1px;
+  background: #7ba7d1;
+  padding: 15px;
 }
 
 #usuarios_wrapper {
@@ -213,5 +215,35 @@ header {
 
 .modal-footer {
   background-color: #7ba7d1;
+}
+
+.btnCrearR {
+  background-color: darkturquoise;
+  width: 45px;
+  height: 45px;
+  margin: 5px;
+}
+
+.btnModificarR {
+  width: 45px;
+  height: 45px;
+  margin: 5px;
+}
+
+.btnEliminarR {
+  width: 45px;
+  height: 45px;
+  margin: 5px;
+}
+
+.buscador_reg {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  text-align: center;
+  margin: 25px;
 }
 /*# sourceMappingURL=main.css.map */

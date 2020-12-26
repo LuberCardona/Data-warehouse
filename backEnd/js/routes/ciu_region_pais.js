@@ -71,7 +71,7 @@ router.post('/crearRegion', async (req, res)=>{  // CREAR REGION SI NO EXISTE PO
       const crearRegion = await access_db.obtenerRegionxDescripcion(req.body);
       console.log(crearRegion);
       if (crearRegion.length) {
-        return res.status(409).json({ error: "La Región ya Existe!" });
+        return res.status(409).json({ error: "La Región ya Existe" });
       }
       await access_db.agregarRegion(req.body);
       res.json(req.body);
