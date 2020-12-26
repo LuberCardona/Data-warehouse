@@ -211,4 +211,8 @@ header {
 .modal-body {
   border: 15px solid #7ba7d1;
 }
+
+.modal-footer {
+  background-color: #7ba7d1;
+}
 /*# sourceMappingURL=style.css.map */

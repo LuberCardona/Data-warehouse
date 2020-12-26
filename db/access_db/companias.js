@@ -34,7 +34,7 @@ const obtenerCompaniaxId = async (id) => { //encontrarPorId
 
 const agregarCompania = async (body) => { // agregar
   return await sequelize.query(
-    `INSERT INTO compañias (Nombre, Direccion, email, Telefono, ciudad_id) 
+    `INSERT INTO companias (Nombre, Direccion, email, Telefono, ciudad_id) 
      VALUES ("${body.Nombre}","${body.Direccion}", "${body.email}", "${body.Telefono}", "${body.ciudad_id}");`,
     { type:sequelize.QueryTypes.INSERT }
   );
@@ -59,6 +59,7 @@ const eliminarCompania = async (id) => { //eliminarCompania
     { type: sequelize.QueryTypes.DELETE }
   );
 };
+
 
 
 module.exports = {

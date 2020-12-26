@@ -60,7 +60,7 @@ window.onload = function () {
                         <td>${e.nom_Compania}</td>                       
                         
                         <td>
-                            <button type="button" onclick="getInfoContactoAmodificar(${e.id_Contacto})" class="btn btn-warning" id="modificarBtnMostrarModal" data-bs-toggle="modal" data-bs-target="#agregarContactoModal">
+                            <button type="button" onclick="getInfoContactoAmodificar(${e.id_Contacto})" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#agregarContactoModal">
                             Modificar
                             </button>
                             
@@ -90,6 +90,7 @@ window.onload = function () {
     });
     crearContactoBtn.addEventListener('click', () => {
     agregarContactoN(jwt);
+    
     });    
     
 };
@@ -293,7 +294,8 @@ function agregarContactoN(){
             response3.json().then((data3)=>{  
                 console.log(response3.status);                          
                 if(response3.status == 200){                
-                    alert('Contacto creado');                                  
+                    alert('Contacto creado');
+                    location.href = location.href;                                  
                 }else if(response3.status == 409){                
                     alert('Contacto ya existe');                
                 }
@@ -302,6 +304,7 @@ function agregarContactoN(){
         }).catch( error => {
         });
     } 
+    
     
 }
 

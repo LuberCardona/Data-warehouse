@@ -6,7 +6,7 @@ const router = require("express").Router();
 const access_db = require('../../../db/access_db/ciu_reg_pais'); 
 
 // GET CIU-REG-PAIS
-router.get('infoCiudades/', async (req, res) => {
+router.get('/infoCiudades', async (req, res) => {
   try {
     let obtenerCiudades = await access_db.obtenerCiudades();
     res.status(200).json(obtenerCiudades);
