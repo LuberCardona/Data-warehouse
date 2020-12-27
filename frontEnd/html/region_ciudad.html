@@ -32,22 +32,22 @@
             <div class="containerBusc region">
                 <h1>Región</h1>   
                 <button type="button" class="btn regi btnCrearR" id="agregarRegion" data-bs-toggle="modal" data-bs-target="#modalAgregarRegion"><i class="fas fa-plus-square"></i></button>          
+                <button onclick="encontrarRegiones()" type="button" class="btn regi btnModificarR btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditarRegion"><i class="fa fa-pencil-square-o"></i></button> 
                 
-                <button  onclick="encontrarRegiones()" type='button' data-toggle="modal" data-target="#modalEditarRegion" class='btn btn-info btn-sm acc regi btnModificarR btn-warning'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                 <button onclick="encontrarRegiones()" data-toggle="modal" data-target="#modalRegionEliminar" type='button' class='btn btn-danger btn-sm acc regi btnEliminarR'><span class="material-icons "><i class="fa fa-trash-o" aria-hidden="true"></i></span></button>
             </div> 
             <div class="containerBusc region">
                 <h1> País</h1>
                 <button type="button" class="btn regi btnCrearR" id="agregarPais" data-bs-toggle="modal" data-bs-target="#modalAgregarPais"><i class="fas fa-plus-square"></i></button>          
-                
-                <button onclick="encontrarPaises()"  type='button' data-toggle="modal" data-target="#modalEditarPais" class='btn btn-info btn-sm acc regi btnModificarR btn-warning'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                <button onclick="encontrarPaises()" type="button" class="btn regi btnModificarR btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditarPais"><i class="fa fa-pencil-square-o"></i></button> 
+               
                 <button onclick="encontrarPaises()"  data-toggle="modal" data-target="#modalPaisEliminar" type='button' class='btn btn-danger btn-sm acc regi btnEliminarR'><span class="material-icons"><i class="fa fa-trash-o" aria-hidden="true"></i></span></button>
             </div>
             <div class="containerBusc region">
                 <h1>Ciudad</h1>
                 <button type="button" class="btn regi btnCrearR" id="agregarCiudad" data-bs-toggle="modal" data-bs-target="#modalAgregarCiudad"><i class="fas fa-plus-square"></i></button>          
-                
-                <button onclick="encontrarCiudad()"  type='button' data-toggle="modal" data-target="#modalEditarCiudad" class='btn btn-info btn-sm acc regi btnModificarR btn-warning'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                <button onclick="encontrarCiudad()" type="button" class="btn regi btnModificarR btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditarCiudad"><i class="fa fa-pencil-square-o"></i></button> 
+
                 <button onclick="encontrarCiudad()"  data-toggle="modal" data-target="#modalCiudadEliminar" type='button' class='btn btn-danger btn-sm acc regi btnEliminarR'><span class="material-icons"><i class="fa fa-trash-o" aria-hidden="true"></i></span></button>
             </div>              
         </section>
@@ -80,7 +80,7 @@
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title">REGION</h5>
+                  <h5 class="modal-title">CREAR REGION</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -111,7 +111,7 @@
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title">PAIS</h5>
+                  <h5 class="modal-title">CREAR PAIS</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -121,12 +121,12 @@
                                 <div class="col-md-4 login-sec">
                                     <div class="form-group">
                                         <label for="pais">País:</label>
-                                        <input id='pais' type="text" class="form-control" placeholder="Escriba el nombre del País">
+                                        <input id='pais' type="text" class="form-control login nombreCrearUsuario" placeholder="Escriba el nombre del País">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="regionList">Región</label>
-                                        <select id="regionList" class="form-control" placeholder="Seleccionar...">
+                                        <select id="regionList" class="form-control login nombreCrearUsuario" placeholder="Seleccionar...">
                                             <option id="fOptReg" value="0">Seleccionar...</option>
                                             <!-- GET DE REGIONES-->
                                         </select>
@@ -151,7 +151,7 @@
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title">CIUDAD</h5>
+                  <h5 class="modal-title">CREAR CIUDAD</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -161,12 +161,12 @@
                                 <div class="col-md-4 login-sec">
                                     <div class="form-group">
                                         <label for="ciudad">Ciudad:</label>
-                                        <input id='ciudad' type="text" class="form-control" placeholder="Ingrese el nombre de la Ciudad">
+                                        <input id='ciudad' type="text" class="form-control login nombreCrearUsuario" placeholder="Ingrese el nombre de la Ciudad">
                                     </div>
                                     
                                     <div class="form-group">
                                         <label for="paisList">País</label>
-                                        <select id="paisList" class="form-control" placeholder="Seleccionar...">
+                                        <select id="paisList" class="form-control login nombreCrearUsuario" placeholder="Seleccionar...">
                                           <option id="fOptPais" value="0">Seleccionar...</option>
                                           <!-- GET DE PAISES -->
                                         </select>
@@ -183,6 +183,126 @@
               </div>
             </div>
         </div> 
+
+<!--MODAL MODIFICAR REGION-->
+        <div class="modal fade" id="modalEditarRegion" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">MODIFICAR REGION</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <section class="login-block">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4 login-sec">
+                                    <div class="form-group">
+                                        <label for="regionListEdit">Región a Modificar</label>
+                                        <select id="regionListEdit" class="form-control login nombreCrearUsuario" placeholder="Seleccionar...">
+                                            <option id="fOptReg" value="0">Seleccione la region a modificar...</option>
+                                            <!-- GET DE REGIONES A MODIFCAR-->
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="regionEdit">Región:</label>
+                                        <input id='regionEdit' type="text" class="form-control login nombreCrearUsuario" placeholder="Modifique aqui la Región seleccionada">
+                                         <!-- REALIZAR MODIFICACION-->
+                                    </div>                                  
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  <button id="editarRegion" type="button" class="btn btn-primary btn-warning">Modificar</button>
+                </div>
+              </div>
+            </div>
+        </div> 
+
+<!--MODAL MODIFICAR PAIS-->
+        <div class="modal fade" id="modalEditarPais" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">MODIFICAR PAIS</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <section class="login-block">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4 login-sec">
+
+                                    <div class="form-group">
+                                        <label for="paisListEdit">País a modificar</label>
+                                        <select id="paisListEdit" class="form-control login nombreCrearUsuario" placeholder="Seleccionar...">
+                                            <option id="fOptReg" value="0">Seleccione el País a modificar...</option>
+                                            <!-- GET PAIS A MODIFICAR -->
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="paisEdit">País:</label>
+                                        <input id='paisEdit' type="text" class="form-control login nombreCrearUsuario" placeholder="Modifique aqui el País seleccionado">
+                                      <!-- REALIZAR MODIFICACION-->
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>                    
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  <button id="editarPais" type="button" class="btn btn-primary btn-warning">Modificar</button>
+                </div>
+              </div>
+            </div>
+        </div> 
+
+ <!--MODAL MODIFICAR CIUDAD-->
+        <div class="modal fade" id="modalEditarCiudad" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">MODIFICAR CIUDAD</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <section class="login-block">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4 login-sec">
+                                    <div class="form-group">
+                                        <label for="ciudadListEdit">Ciudad a modificar</label>
+                                        <select id="ciudadListEdit" class="form-control login nombreCrearUsuario" placeholder="Seleccionar...">
+                                            <option id="fOptReg" value="0">Seleccione la ciudad a modificar...</option>
+                                            <!-- GET DE CIUDADES//A MODIFICAR -->
+                                        </select>
+                                    </div> 
+
+                                    <div class="form-group">
+                                        <label for="ciudadEdit">Ciudad:</label>
+                                        <input id='ciudadEdit' type="text" class="form-control login nombreCrearUsuario" placeholder="Modifique aqui la ciudad seleccionada">
+                                        <!-- REALIZAR MODIFICACION-->
+                                     </div>                                  
+                                </div>
+                            </div>
+                        </div>
+                    </section>                   
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  <button id="editarCiudad" type="button" class="btn btn-primary btn-warning">Modificar</button>
+                </div>
+              </div>
+            </div>
+        </div>
+
         
 
 
