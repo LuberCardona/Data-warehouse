@@ -1,28 +1,34 @@
 
-let ocultarform = document.getElementsByClassName('ocultarform')[0];
-let tablaUsuarios = document.getElementById('usuarios');
-let agregarBtn = document.getElementsByClassName('btnCrearU')[0]; 
-let btnLimpiar = document.getElementsByClassName('btnLimpiar')[0];
-let agregarUsuario = document.getElementById("agregarUsuario");
-let tabla = document.getElementById("tabla");
+// modal crear // modificar
+let agregarNuevoUsuarioBtn = document.getElementById("agregarNuevoUsuarioBtn"); 
+let modificarUsuarioBtn= document.getElementsByClassName('modificarUsuarioBtn')[0]; 
+
+// datos form
 let nombreCrearUsuario=document.getElementsByClassName('nombreCrearUsuario')[0];
 let apellidoCrearUsuario=document.getElementsByClassName('apellidoCrearUsuario')[0];
 let emailCrearUsuario = document.getElementsByClassName('emailCrearUsuario')[0];
 let perfil = document.getElementsByClassName('perfil')[0];
 let passwordCrearUsuario = document.getElementsByClassName('passwordCrearUsuario')[0];
+
+// tabla - template
 let datosUsuarios = document.getElementById('datosUsuarios');
-let eliminarUsuarioBtn = document.getElementById("eliminarUsuario"); 
+
+let eliminarUsuarioBtnConfir = document.getElementById('eliminarUsuarioBtnConfir');
 let crearUsuarioBtn = document.getElementById("crearUsuario");
-let modificarUsuarioBtn= document.getElementsByClassName('modificarUsuarioBtn')[0];
-let btnVolver =  document.getElementsByClassName('btnVolver')[0];
+
 
 setTimeout(() => {
     $(document).ready(function() {
         $('#usuarios').DataTable();
     });
-}, 100);
+}, 180);
+
 
 window.onload = function () {
+    if (jwt != null) {
+        if (parseJwt(jwt).perfilUsuario == "Contactos") {
+            removeUserPage.remove();
+        } 
         fetch('http://localhost:3000/infoUsuarios', {
             method: 'GET',
             headers: { "Authorization": "Bearer " + jwt }
@@ -37,43 +43,35 @@ window.onload = function () {
                             <td>${e.email}</td>
                             <td>${e.perfil}</td>  
                             <td>
-                            <button type="button" class="btn btn-warning" onclick="modificarUdatosEnForm(${e.id})" >Modificar</button>
-                            <button onclick="eliminarUsuario(${e.id})" data-toggle="modal" data-target="#modalBorrarUsurio" type='button' class='btn btn-danger btn-sm acc'><span class="material-icons"><i class="fa fa-trash-o" aria-hidden="true"></i>Eliminar</span></button>
+                            <button type="button" onclick="modificarUdatosEnForm(${e.id})" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#crearUsuarioNuevoModal">
+                             Modificar
+                            </button>
+
+                            <button type="button" class="btn btn-danger" onclick="validarEliminar(${e.id})" data-bs-toggle="modal" data-bs-target="#confirmarEliminarUsuarioModal">
+                             Eliminar
+                            </button>
                         </td>                   
                     </tr>`;
                     datosUsuarios.insertAdjacentHTML('beforeend', template);                    
                 });
             });
+            
         }).catch(error => {
            console.log(error);
-    });    
+       }); 
+    }else {
+        location.href = "../html/index.html";
+    }
+    agregarNuevoUsuarioBtn.addEventListener('click', () => {
+        nombreCrearUsuario.value = "";
+        apellidoCrearUsuario.value = "";
+        emailCrearUsuario.value = "";
+        perfil.value = "";
+        passwordCrearUsuario.value = "";
+        
+        modificarUsuarioBtn.style.display = "none";
+    });   
 };
-
-agregarBtn.addEventListener('click', function () {  
-    MostrarOcultarForm(); 
-});
-
-function MostrarOcultarForm(){                   
-    tabla.classList.toggle("ocultarMostrar");
-    ocultarform.classList.toggle("mostrarform");     
-    crearUsuarioBtn.classList.add('mostrarform');
-    crearUsuarioBtn.classList.add('bgCrearMostrar');
-    modificarUsuarioBtn.classList.add('ocultarform');
-
-} 
-function MostrarOcultarModUsuBtn(){  
-    modificarUsuarioBtn.classList.add('mostrarform');
-    modificarUsuarioBtn.classList.add('bgModificar');
-    crearUsuarioBtn.classList.toggle('ocultarform');
-    crearUsuarioBtn.classList.add('bgCrear');
-    crearUsuarioBtn.classList.remove('bgCrearMostrar');
-
-}
-
-btnVolver.addEventListener('click', function () {               
-    tabla.classList.toggle("ocultarMostrar");
-    ocultarform.classList.toggle("mostrarform");
-});
 
 // POST USUARIO
 function adicionarUsuario(){  
@@ -91,7 +89,8 @@ function adicionarUsuario(){
             response2.json().then((data2)=>{  
                 console.log(response2.status);                          
                 if(response2.status == 200){                
-                    alert('Usuario creado');                                  
+                    alert('Usuario creado'); 
+                    location.href = location.href;                                 
                 }else if(response2.status == 409){                
                     alert('Usuario o email ya existe');                
                 }else if(response2.status == 401){               
@@ -104,12 +103,12 @@ function adicionarUsuario(){
     } 
 }
 
-btnLimpiar.addEventListener('click', () => {
-    nombreCrearUsuario.value = "";
-    apellidoCrearUsuario.value = "";
-    emailCrearUsuario.value = "";
-    passwordCrearUsuario.value = "";
-});
+
+function validarEliminar(id) {
+    eliminarUsuarioBtnConfir.addEventListener('click', ()=> {
+        eliminarUsuario((id) );
+    });
+}
 
 function eliminarUsuario(id) {
     console.log(id);
@@ -121,7 +120,7 @@ function eliminarUsuario(id) {
     }).then(res => {
         if (res.status == 200) {
             alert('Usuario eliminado');
-           location.href = location.href; // recargar 
+           location.href = location.href; // 
 
         } else {
             console.log("error");
@@ -140,9 +139,8 @@ function modificarUdatosEnForm(id) {  // muestra en formulario datos del usuario
              headers: { "Authorization": "Bearer " + jwt }
      }).then(res => {
          if (res.status == 200) {
-             res.json().then(data => { 
-            MostrarOcultarForm(); 
-                console.log(data);                     
+             res.json().then(data => {            
+                //console.log(data);                     
                 nombreCrearUsuario.value = data[0].Nombre;
                 apellidoCrearUsuario.value = data[0].Apellido;
                 emailCrearUsuario.value = data[0].email;
@@ -156,13 +154,14 @@ function modificarUdatosEnForm(id) {  // muestra en formulario datos del usuario
          }).catch(error => {
              console.log(error);
          }); 
+
+         crearUsuarioBtn.style.display = "none";
+         modificarUsuarioBtn.style.display = "initial";
     }
-    MostrarOcultarModUsuBtn();
     modificarUsuarioBtn.addEventListener('click', () => {
         modificarUsuarioDb(id);
     });
 }
-
 
 function modificarUsuarioDb(id) {
     //console.log(id);
