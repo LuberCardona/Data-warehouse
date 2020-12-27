@@ -29,26 +29,26 @@
         <hr>
 
         <section id="buscador" class="buscador_reg">
+
             <div class="containerBusc region">
                 <h1>Región</h1>   
                 <button type="button" class="btn regi btnCrearR" id="agregarRegion" data-bs-toggle="modal" data-bs-target="#modalAgregarRegion"><i class="fas fa-plus-square"></i></button>          
                 <button onclick="encontrarRegiones()" type="button" class="btn regi btnModificarR btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditarRegion"><i class="fa fa-pencil-square-o"></i></button> 
-                
-                <button onclick="encontrarRegiones()" data-toggle="modal" data-target="#modalRegionEliminar" type='button' class='btn btn-danger btn-sm acc regi btnEliminarR'><span class="material-icons "><i class="fa fa-trash-o" aria-hidden="true"></i></span></button>
+                <button onclick="encontrarRegiones()" type="button" class="btn regi btnModificarR btn-danger" data-bs-toggle="modal" data-bs-target="#modalRegionEliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></button> 
             </div> 
+
             <div class="containerBusc region">
                 <h1> País</h1>
                 <button type="button" class="btn regi btnCrearR" id="agregarPais" data-bs-toggle="modal" data-bs-target="#modalAgregarPais"><i class="fas fa-plus-square"></i></button>          
                 <button onclick="encontrarPaises()" type="button" class="btn regi btnModificarR btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditarPais"><i class="fa fa-pencil-square-o"></i></button> 
-               
-                <button onclick="encontrarPaises()"  data-toggle="modal" data-target="#modalPaisEliminar" type='button' class='btn btn-danger btn-sm acc regi btnEliminarR'><span class="material-icons"><i class="fa fa-trash-o" aria-hidden="true"></i></span></button>
+                <button onclick="encontrarPaises()" type="button" class="btn regi btnModificarR btn-danger" data-bs-toggle="modal" data-bs-target="#modalPaisEliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></button> 
             </div>
+
             <div class="containerBusc region">
                 <h1>Ciudad</h1>
                 <button type="button" class="btn regi btnCrearR" id="agregarCiudad" data-bs-toggle="modal" data-bs-target="#modalAgregarCiudad"><i class="fas fa-plus-square"></i></button>          
                 <button onclick="encontrarCiudad()" type="button" class="btn regi btnModificarR btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditarCiudad"><i class="fa fa-pencil-square-o"></i></button> 
-
-                <button onclick="encontrarCiudad()"  data-toggle="modal" data-target="#modalCiudadEliminar" type='button' class='btn btn-danger btn-sm acc regi btnEliminarR'><span class="material-icons"><i class="fa fa-trash-o" aria-hidden="true"></i></span></button>
+                <button onclick="encontrarCiudad()" type="button" class="btn regi btnModificarR btn-danger" data-bs-toggle="modal" data-bs-target="#modalCiudadEliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></button> 
             </div>              
         </section>
 
@@ -302,6 +302,168 @@
               </div>
             </div>
         </div>
+
+<!--MODAL ***** CONFIRMAR ***** ELIMINAR REGION-->
+        <div class="modal fade" id="modalBorrarRegion" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">CONFIRMAR ELIMINAR REGION</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p class="modal-texto">Esta seguro de eliminar la Región?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary cerrarBtnModalElimConfirmar" data-bs-dismiss="modal">Cerrar</button>
+                  <button type="button" id="eliminarRegionConfirmar" class="btn btn-primary btn-danger">Eliminar</button>
+                </div>
+              </div>
+            </div>
+        </div> 
+
+<!--MODAL ELIMINAR REGION-->
+        <div class="modal fade" id="modalRegionEliminar" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">ELIMINAR REGION</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <section class="login-block">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4 login-sec">
+                                    <div class="form-group">
+                                        <label for="regionListElim">Región</label>
+                                        <select id="regionListElim" class="form-control login nombreCrearUsuario" placeholder="Seleccionar...">
+                                            <option id="fOptReg" value="0">Seleccione la Región a eliminar...</option>
+                                            <!-- GET REGION A ELIMINAR -->
+                                        </select>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </section>                    
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Cerrar</button>
+                  <button type="button" class="btn btn-danger" id="ocultarModalEliminar1" data-bs-toggle="modal" data-bs-target="#modalBorrarRegion">Eliminar</button> 
+                  <!-- LLAMA AL MODAL //modalBorrarRegion// CONFIRMAR -->
+            
+                </div>
+              </div>
+            </div>
+        </div> 
+
+<!--MODAL ***** CONFIRMAR ***** ELIMINAR PAIS-->
+        <div class="modal fade" id="modalBorrarPais" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">CONFIRMAR ELIMINAR PAIS</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p class="modal-texto">Esta seguro de eliminar el País?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary cerrarBtnModalElimConfirmar" data-bs-dismiss="modal">Cerrar</button>
+                  <button type="button" id="eliminarPaisConfirmar" class="btn btn-primary btn-danger">Eliminar</button>
+                </div>
+              </div>
+            </div>
+        </div> 
+
+<!--MODAL ELIMINAR PAIS-->
+        <div class="modal fade" id="modalPaisEliminar" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">ELIMINAR PAIS</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <section class="login-block">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4 login-sec">
+                                    <div class="form-group">
+                                        <label for="paisListElim">País a eliminar</label>
+                                        <select id="paisListElim" class="form-control login nombreCrearUsuario" placeholder="Seleccionar...">
+                                            <option id="fOptReg" value="0">Seleccione el pais a eliminar...</option>
+                                            <!-- GET DE PAISES // A ELIMINAR -->
+                                        </select>
+                                    </div> 
+                                </div>
+                                </div>
+                            </div>
+                    </section>                   
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Cerrar</button>
+                  <button type="button" class="btn btn-danger" id="ocultarModalEliminarPais" data-bs-toggle="modal" data-bs-target="#modalBorrarPais">Eliminar</button> 
+                  <!-- LLAMA AL MODAL //modalBorrarPais// CONFIRMAR -->
+            
+                </div>
+              </div>
+            </div>
+        </div> 
+
+<!--MODAL ***** CONFIRMAR ***** ELIMINAR CIUDAD-->
+        <div class="modal fade" id="modalBorrarCiudad" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">CONFIRMAR ELIMINAR CIUDAD</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p class="modal-texto">Esta seguro de eliminar la Ciudad?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary cerrarBtnModalElimConfirmar" data-bs-dismiss="modal">Cerrar</button>
+                  <button type="button" id="eliminarCiudadConfirmar" class="btn btn-primary btn-danger">Eliminar</button>
+                </div>
+              </div>
+            </div>
+        </div> 
+
+<!--MODAL ELIMINAR CIUDAD-->
+        <div class="modal fade" id="modalCiudadEliminar" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">ELIMINAR CIUDAD</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <section class="login-block">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4 login-sec">
+                                    <div class="form-group">
+                                        <label for="ciudadListElim">Ciudad</label>
+                                        <select id="ciudadListElim" class="form-control" placeholder="Seleccionar...">
+                                            <option id="fOptReg" value="0">Seleccione la Ciudad a eliminar...</option>
+                                            <!-- GET DE CIUDADES // A ELIMINAR -->
+                                        </select>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </section>                   
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Cerrar</button>
+                  <button type="button" class="btn btn-danger" id="ocultarModalEliminarCiu" data-bs-toggle="modal" data-bs-target="#modalBorrarCiudad">Eliminar</button> 
+                  <!-- LLAMA AL MODAL //modalBorrarCiudad// CONFIRMAR -->
+            
+                </div>
+              </div>
+            </div>
+        </div> 
 
         
 

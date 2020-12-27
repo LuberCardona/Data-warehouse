@@ -27,19 +27,29 @@ let crearRegionBtn = document.getElementById("crearRegion"); // btn crear del mo
 let crearPaisBtn = document.getElementById("crearPais"); 
 let crearCiudadBtn = document.getElementById("crearCiudad"); 
 
+let ocultarModalEliminar1 = document.getElementById('ocultarModalEliminar1');
+let ocultarModalEliminarPais = document.getElementById('ocultarModalEliminarPais');
+let ocultarModalEliminarCiu = document.getElementById('ocultarModalEliminarCiu');
+
+//btn cerrar eliminar confirmar location href
+let cerrarBtnModalElimConfirmarRe= document.getElementsByClassName('cerrarBtnModalElimConfirmar')[0];
+let cerrarBtnModalElimConfirmarPa= document.getElementsByClassName('cerrarBtnModalElimConfirmar')[1];
+let cerrarBtnModalElimConfirmarCi= document.getElementsByClassName('cerrarBtnModalElimConfirmar')[2];
+
+ 
 let editarRegionBtn = document.getElementById("editarRegion"); 
 let editarPaisBtn = document.getElementById("editarPais"); 
 let editarCiudadBtn = document.getElementById("editarCiudad"); 
 
 
 let listaRegionesElim = document.getElementById("regionListElim"); 
-let eliminarRegionDefinitivamente = document.getElementById("eliminarRegionDefinitivamente");
+let eliminarRegionConfirmar = document.getElementById("eliminarRegionConfirmar"); // MODAL CONFIRMAR ELIMINAR
 
 let listaPaisesElim = document.getElementById("paisListElim"); 
-let eliminarPaisDefinitivamente = document.getElementById("eliminarPaisDefinitivamente"); 
+let eliminarPaisConfirmar = document.getElementById("eliminarPaisConfirmar"); 
 
 let listaCiudadesElim = document.getElementById("ciudadListElim"); 
-let eliminarCiudadDefinitivamente = document.getElementById("eliminarCiudadDefinitivamente"); 
+let eliminarCiudadConfirmar = document.getElementById("eliminarCiudadConfirmar"); 
 
 
 setTimeout(() => {
@@ -154,14 +164,13 @@ function encontrarRegiones(jwt) {
                 let templateRegiones = `<option value=${e.id}>${e.Nombre}</option>`
                 listaRegiones.insertAdjacentHTML('beforeend', templateRegiones); // seleccionar...
                 listaRegionesEdit.insertAdjacentHTML('beforeend', templateRegiones);
-               /* listaRegionesElim.insertAdjacentHTML('beforeend', templateRegiones);*/
+                listaRegionesElim.insertAdjacentHTML('beforeend', templateRegiones);
                
             });
         });
     }).catch(error => {
         console.log(error);
-    });
-              
+    });              
     
         editarRegionBtn.addEventListener('click', () => { // MODIFICAR REGION
             let region_id = listaRegionesEdit.value;
@@ -169,16 +178,11 @@ function encontrarRegiones(jwt) {
             modificarRegionC(region_id, regionAEditar);
         });
 
-        
-
-    //Eliminar
-   /* eliminarRegionDefinitivamente.addEventListener('click', () => {
-        let regionId = listaRegionesElim.value;
-        eliminarRegionFunc(regionId);
-    });*/
+        eliminarRegionConfirmar.addEventListener('click', () => { // CONFIRMAR ELIMINAR REGION
+            let region_id = listaRegionesElim.value;
+            eliminarRegionD(region_id);
+        });
 };
-
-
 
 
 // AGREGAR PAIS
@@ -224,28 +228,25 @@ function encontrarPaises(jwt) {
                 let templatePaises = `<option value=${e.id}>${e.Nombre}</option>`
                 listaPaises.insertAdjacentHTML('beforeend', templatePaises);
                 listaPaisesEdit.insertAdjacentHTML('beforeend', templatePaises);
-               /* listaPaisesElim.insertAdjacentHTML('beforeend', templatePaises);*/
+                listaPaisesElim.insertAdjacentHTML('beforeend', templatePaises);
 
             });
             
         });
     }).catch(error => {
         console.log(error);
-    });
-    
+    });   
     
         editarPaisBtn.addEventListener('click', () => {  // MODIFICAR PAIS
             let pais_id = listaPaisesEdit.value;
             let paisAEditar = paisEdit.value;
-            modificarPaisC(pais_id, paisAEditar);
-            
+            modificarPaisC(pais_id, paisAEditar);            
         });
 
-    //Eliminar
-  /* eliminarPaisDefinitivamente.addEventListener('click', () => {
-        let paisId = listaPaisesElim.value;
-        eliminarPaisFunc(paisId);
-    });*/
+        eliminarPaisConfirmar.addEventListener('click', () => { // CONFIRMAR ELIMINAR PAIS
+            let pais_id = listaPaisesElim.value;
+            eliminarPaisD(pais_id);
+        });
 };
 
 // AGREGAR CIUDAD N
@@ -338,24 +339,24 @@ function encontrarCiudad(jwt) {
                 //console.log(e);
                 let templateCiudades = `<option value=${e.id_Ciudad}>${e.nom_Ciudad}</option>`
                 listaCiudadesEdit.insertAdjacentHTML('beforeend', templateCiudades);
-               /* listaCiudadesElim.insertAdjacentHTML('beforeend', templateCiudades);*/
+                listaCiudadesElim.insertAdjacentHTML('beforeend', templateCiudades);
 
             });
         });
     }).catch(error => {
         console.log(error);
     });
-    ///Editar
-    editarCiudadBtn.addEventListener('click', () => {
-        let ciudad_id = listaCiudadesEdit.value;
-        let ciudadAEditar = ciudadEdit.value;
-        editarCiudadC(ciudad_id, ciudadAEditar);
-    });
-    ///Eliminar
-    /*eliminarCiudadDefinitivamente.addEventListener('click', () => {
-        let ciudadId = listaCiudadesElim.value;
-        eliminarCiudadFunc(ciudadId);
-    });*/
+  
+        editarCiudadBtn.addEventListener('click', () => { // MODIFICAR CIUDAD
+            let ciudad_id = listaCiudadesEdit.value;
+            let ciudadAEditar = ciudadEdit.value;
+            editarCiudadC(ciudad_id, ciudadAEditar);
+        });
+    
+        eliminarCiudadConfirmar.addEventListener('click', () => { // ELIMINAR CIUDAD
+            let ciudad_id = listaCiudadesElim.value;
+            eliminarCiudadD(ciudad_id);
+        });
 };
 
 //MODIFICAR CIUDAD
@@ -381,3 +382,100 @@ function editarCiudadC(ciudad_id, ciudadAEditar) {
     }
 }
 
+
+// OCULTAR MODAL ELIMINAR REGION -PARA VER MODAL CONFIRMAR ELIMINAR REGION
+ocultarModalEliminar1.addEventListener('click',()=>{
+    let modalRegionEliminar = document.getElementById('modalRegionEliminar');
+    modalRegionEliminar.style.display = "none";
+});
+
+// btn cerrar del modal confirmar eliminar - regargar navegador
+cerrarBtnModalElimConfirmarRe.addEventListener('click',()=>{
+    location.href = location.href;
+});
+
+
+// ELIMINAR REGION 
+function eliminarRegionD(region_id) {
+   // console.log(regionId);
+    if (jwt != null) {
+        fetch(`http://localhost:3000/eliminarRegion/${region_id}`, {
+            method: 'DELETE',
+            headers:{"Content-Type":"application/json"}
+        }).then(res => {
+            if (res.status == 200) {
+                alert("Región Eliminada");
+               location.href = location.href; 
+
+            } else {
+                console.log("error");
+            }
+        }).catch(error => {
+            console.log(error);
+        });
+    }
+}
+
+// OCULTAR MODAL ELIMINAR PAIS -PARA VER MODAL CONFIRMAR ELIMINAR PAIS
+ocultarModalEliminarPais.addEventListener('click',()=>{
+    let modalPaisEliminar = document.getElementById('modalPaisEliminar');
+    modalPaisEliminar.style.display = "none";
+});
+
+
+// btn cerrar del modal confirmar eliminar - recargar navegador
+cerrarBtnModalElimConfirmarPa.addEventListener('click',()=>{
+    location.href = location.href;
+});
+
+// ELIMINAR PAIS
+function eliminarPaisD(pais_id) {
+    console.log(pais_id);
+    if (jwt != null) {
+        fetch(`http://localhost:3000/eliminarPais/${pais_id}`, {
+            method: 'DELETE',
+            headers:{"Content-Type":"application/json"}
+        }).then(res => {
+            if (res.status == 200) {
+                alert("País Eliminado");
+                location.href = location.href; 
+
+            } else {
+                console.log("error");
+            }
+        }).catch(error => {
+            console.log(error);
+        });
+    }
+}
+
+// OCULTAR MODAL ELIMINAR CIUDAD -PARA VER MODAL CONFIRMAR ELIMINAR CUIDAD
+ocultarModalEliminarCiu.addEventListener('click',()=>{
+    let modalCiudadEliminar = document.getElementById('modalCiudadEliminar');
+    modalCiudadEliminar.style.display = "none";
+});
+
+// btn cerrar del modal confirmar eliminar - recargar navegador
+cerrarBtnModalElimConfirmarCi.addEventListener('click',()=>{
+    location.href = location.href;
+});
+
+// ELIMINAR CIUDAD
+function eliminarCiudadD(ciudad_id) {
+    if (jwt != null) {
+        fetch(`http://localhost:3000/eliminarCiudad/${ciudad_id}`, {
+            method: 'DELETE',
+            headers:{"Content-Type":"application/json"}
+        }).then(res => {
+            if (res.status == 200) {
+                alert("Ciudad Eliminada");
+                location.href = location.href; 
+
+            } else {
+                console.log("error");
+            }
+        }).catch(error => {
+            console.log(error);
+        });
+    }
+}

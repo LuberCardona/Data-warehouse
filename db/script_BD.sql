@@ -20,14 +20,14 @@
     `Direccion` VARCHAR(150) NOT NULL,
     `email` VARCHAR(100) NOT NULL,
     `Telefono` VARCHAR(45) NOT NULL,
-    `ciudad_id` INT NOT NULL,
+    `ciudad_id` INT DEFAULT NULL,
     PRIMARY KEY (`id`),
   INDEX `fk_companias_ciudades_idx` (`ciudad_id` ASC) VISIBLE,
     CONSTRAINT `fk_companias_ciudades`
       FOREIGN KEY (`ciudad_id`)
       REFERENCES `datawarehouse`.`ciudades` (`id`)
-      ON DELETE NO ACTION
-      ON UPDATE NO ACTION)
+      ON DELETE SET NULL
+      ON UPDATE CASCADE)
   ENGINE = InnoDB
   DEFAULT CHARACTER SET = utf8;
 
@@ -43,21 +43,21 @@
     `email` VARCHAR(100) NOT NULL,
     `Canal_favorito` VARCHAR(100) NOT NULL,
     `Interes` VARCHAR(100) NOT NULL,
-    `ciudad_id` INT NOT NULL,
-    `compania_id` INT NOT NULL,  
+    `ciudad_id` INT DEFAULT NULL,
+    `compania_id` INT DEFAULT NULL,  
     PRIMARY KEY (`id`),
     INDEX `fk_contactos_companias_idx` (`compania_id` ASC) VISIBLE,
     INDEX `fk_contactos_ciudades_idx` (`ciudad_id` ASC) VISIBLE,
     CONSTRAINT `fk_contactos_companias`
       FOREIGN KEY (`compania_id`)
       REFERENCES `datawarehouse`.`companias` (`id`)
-      ON DELETE NO ACTION
-      ON UPDATE NO ACTION, 
+      ON DELETE SET NULL
+      ON UPDATE CASCADE, 
     CONSTRAINT `fk_contactos_ciudades`
       FOREIGN KEY (`ciudad_id`)
       REFERENCES `datawarehouse`.`ciudades` (`id`)
-      ON DELETE NO ACTION
-      ON UPDATE NO ACTION)
+      ON DELETE SET NULL
+      ON UPDATE CASCADE)
   ENGINE = InnoDB
   DEFAULT CHARACTER SET = utf8;
 
@@ -68,14 +68,14 @@
   CREATE TABLE IF NOT EXISTS `datawarehouse`.`paises` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `Nombre` VARCHAR(45) NOT NULL,
-    `region_id` INT NOT NULL,
+    `region_id` INT DEFAULT NULL,
     PRIMARY KEY (`id`),
     INDEX `fk_paises_regiones_idx` (`region_id` ASC) VISIBLE,
     CONSTRAINT `fk_paises_regiones`
       FOREIGN KEY (`region_id`)
       REFERENCES `datawarehouse`.`regiones` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE)
   ENGINE = InnoDB
   DEFAULT CHARACTER SET = utf8;
 
@@ -85,14 +85,14 @@
   CREATE TABLE IF NOT EXISTS `datawarehouse`.`ciudades` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `Nombre` VARCHAR(45) NOT NULL,
-    `pais_id` INT NOT NULL,
+    `pais_id` INT DEFAULT NULL,
     PRIMARY KEY (`id`), 
     INDEX `fk_ciudades_paises_idx` (`pais_id` ASC) VISIBLE,
     CONSTRAINT `fk_ciudades_paises`
       FOREIGN KEY (`pais_id`)
       REFERENCES `datawarehouse`.`paises` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE)
   ENGINE = InnoDB
   DEFAULT CHARACTER SET = utf8;
 
@@ -177,10 +177,10 @@
   INSERT INTO `datawarehouse`.`contactos`
   (`id`, `Nombre`, `Apellido`, `Cargo`, `email`, `Canal_favorito`, `Interes`, `ciudad_id`, `compania_id`)
   VALUES
-  (NULL, "Camila", "Panto", "UX Designer", "camila@emai.com", "Correo Electrónico", 0, 1, 4),
-  (NULL, "Agustin", "Soria", "UI Designer", "agustin@email.com", "WhatsApp", 25, 2, 4),
-  (NULL, "Milena1", "Soria1", "Developer", "milena1@email.com","Correo Electrónico", 50, 3, 4),
+  (NULL, "Camila", "Panto", "UX Designer", "camila@emai.com", "Correo Electrónico", 0, 1, 1),
+  (NULL, "Agustin", "Soria", "UI Designer", "agustin@email.com", "WhatsApp", 25, 2, 2),
+  (NULL, "Milena1", "Soria1", "Developer", "milena1@email.com","Correo Electrónico", 50, 3, 3),
   (NULL, "Milena2", "Soria2", "Developer", "milena2@email.com",  "WhatsApp", 75, 6, 4),
-  (NULL, "Milena3", "Soria3", "Developer", "milena3@email.com", "Correo Electrónico", 100, 4, 4),
+  (NULL, "Milena3", "Soria3", "Developer", "milena3@email.com", "Correo Electrónico", 100, 4, 5),
   (NULL, "Milena4", "Soria4", "Developer", "milena4@email.com", "Correo Electrónico", 75, 7, 4),
   (NULL, "Milena5", "Soria5", "Developer", "milena5@email.com", "WhatsApp", 50, 5, 4);

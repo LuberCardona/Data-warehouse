@@ -99,10 +99,8 @@ function eliminarUnaCompania(id_Comp) {
             alert('Compañía eliminada');
             location.href = location.href; 
 
-        } else if(res.status == 400){
-            console.log(res.status);
-            alert('No es posible eliminar la compañia ya que ésta se encuentra asociada a un contacto');
-            location.href = location.href; 
+        } else {
+            console.log("error");
         }
     }).catch(error => {
          console.log(error);
@@ -224,6 +222,7 @@ function editarCompaniaFunc(jwt, compania_id) {
         }); 
     }
 }
+
 
 
 
