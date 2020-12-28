@@ -1,4 +1,7 @@
 
+let jwt = sessionStorage.getItem("jwt");
+let removeUserPage = document.getElementsByClassName('removeUserPage')[0]; // link usuarios
+
 // modal crear // modificar
 let agregarNuevoUsuarioBtn = document.getElementById("agregarNuevoUsuarioBtn"); 
 let modificarUsuarioBtn= document.getElementsByClassName('modificarUsuarioBtn')[0]; 
@@ -21,7 +24,7 @@ setTimeout(() => {
     $(document).ready(function() {
         $('#usuarios').DataTable();
     });
-}, 180);
+}, 100);
 
 
 window.onload = function () {
@@ -190,3 +193,13 @@ function modificarUsuarioDb(id) {
     }   
 };
 
+
+/////////
+function parseJwt (token) {
+    var base64Url = jwt.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+    return JSON.parse(jsonPayload);
+};

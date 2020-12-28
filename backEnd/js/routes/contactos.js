@@ -1,9 +1,5 @@
 
 const router = require("express").Router();
-//const validaciones = require('../../js/middlewares/validaciones');
-//const sequelize = require('../../js/conexiondb');
-//const jwt = require('jsonwebtoken');
-//const SECRET = process.env.SECRET;
 const access_db = require('../../../../DataWarehouse/db/access_db/contactos'); 
 
 

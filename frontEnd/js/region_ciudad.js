@@ -1,5 +1,7 @@
-let rowsR = document.getElementById("rows");
-let menuUsuarios = document.getElementById("menuUsuarios");  
+let jwt = sessionStorage.getItem("jwt");
+let removeUserPage = document.getElementsByClassName('removeUserPage')[0]; // link usuarios
+
+let rowsR = document.getElementById("rows"); 
 let region = document.getElementById("region"); 
 let pais = document.getElementById("pais"); 
 let ciudad = document.getElementById("ciudad"); 
@@ -31,7 +33,7 @@ let ocultarModalEliminar1 = document.getElementById('ocultarModalEliminar1');
 let ocultarModalEliminarPais = document.getElementById('ocultarModalEliminarPais');
 let ocultarModalEliminarCiu = document.getElementById('ocultarModalEliminarCiu');
 
-//btn cerrar eliminar confirmar location href
+//btn cerrar --eliminar confirmar location href
 let cerrarBtnModalElimConfirmarRe= document.getElementsByClassName('cerrarBtnModalElimConfirmar')[0];
 let cerrarBtnModalElimConfirmarPa= document.getElementsByClassName('cerrarBtnModalElimConfirmar')[1];
 let cerrarBtnModalElimConfirmarCi= document.getElementsByClassName('cerrarBtnModalElimConfirmar')[2];
@@ -56,7 +58,7 @@ setTimeout(() => {
     $(document).ready(function () {
         $('#tablaRegiones').DataTable();
     });
-}, 230);
+}, 100);
 
 window.onload = function () {
     if (jwt != null) {
@@ -70,7 +72,7 @@ window.onload = function () {
             res.json().then(data => {
                 data.forEach((e) => {
                    // console.log(e);
-                    let template = `<tr><td><input type="checkbox"></td>
+                    let template = `<tr>
                                         <td>${e.nom_Region}</td>
                                         <td>${e.nom_Pais}</td>
                                         <td>${e.nom_Ciudad}</td>
@@ -87,8 +89,7 @@ window.onload = function () {
 
     agregarRegion.addEventListener('click', () => { // BTN +
         region.value = "";
-/*         editarContactoBtn.style.display = "none";
- */      /* crearRegionBtn.style.display = "initial";*/
+
     });
     crearRegionBtn.addEventListener('click', () => { // BTN CREAR MODAL
         agregarRegionN(jwt);
@@ -96,8 +97,7 @@ window.onload = function () {
 
     agregarPais.addEventListener('click', () => { // BTN +
         pais.value = "";
-/*         editarContactoBtn.style.display = "none";
- */    /* crearPaisBtn.style.display = "initial";*/
+
         encontrarRegiones(jwt)
     });
     crearPaisBtn.addEventListener('click', () => { // BTN CREAR MODAL
@@ -106,8 +106,7 @@ window.onload = function () {
 
     agregarCiudad.addEventListener('click', () => { // BTN +
         ciudad.value = "";
-/*         editarContactoBtn.style.display = "none";
- */    /* crearCiudadBtn.style.display = "initial";*/
+
         encontrarPaises(jwt)
     });
     crearCiudadBtn.addEventListener('click', () => { //BTN CREAR MODAL
@@ -265,6 +264,7 @@ function agregarCiudadN() {
             if (res.status == 409) {
                 alert("La ciudad ya existe");
                 location.href = location.href; 
+                
 
             }
             if (res.status == 200) {
@@ -389,7 +389,7 @@ ocultarModalEliminar1.addEventListener('click',()=>{
     modalRegionEliminar.style.display = "none";
 });
 
-// btn cerrar del modal confirmar eliminar - regargar navegador
+// btn cerrar del modal confirmar eliminar - recargar 
 cerrarBtnModalElimConfirmarRe.addEventListener('click',()=>{
     location.href = location.href;
 });
@@ -423,7 +423,7 @@ ocultarModalEliminarPais.addEventListener('click',()=>{
 });
 
 
-// btn cerrar del modal confirmar eliminar - recargar navegador
+// btn cerrar del modal confirmar eliminar - recargar
 cerrarBtnModalElimConfirmarPa.addEventListener('click',()=>{
     location.href = location.href;
 });
@@ -455,7 +455,7 @@ ocultarModalEliminarCiu.addEventListener('click',()=>{
     modalCiudadEliminar.style.display = "none";
 });
 
-// btn cerrar del modal confirmar eliminar - recargar navegador
+// btn cerrar del modal confirmar eliminar - recargar 
 cerrarBtnModalElimConfirmarCi.addEventListener('click',()=>{
     location.href = location.href;
 });
@@ -479,3 +479,13 @@ function eliminarCiudadD(ciudad_id) {
         });
     }
 }
+
+/////////
+function parseJwt (token) {
+    var base64Url = jwt.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+    return JSON.parse(jsonPayload);
+};

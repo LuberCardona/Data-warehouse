@@ -163,12 +163,6 @@ header {
   display: block;
 }
 
-/*.mostrarformImp{
-    display: block !important;
-}*/
-/*.modificarUsuarioBtn{
-    display: none;
-}*/
 .bgModificar {
   background-color: orange;
 }
@@ -246,5 +240,11 @@ header {
           justify-content: space-between;
   text-align: center;
   margin: 25px;
+}
+
+.salir {
+  color: red;
+  text-decoration: unset;
+  margin-left: 95%;
 }
 /*# sourceMappingURL=style.css.map */

@@ -16,7 +16,7 @@ const validateLogin = (req, res, next) => {
 };
 
 
-// Validar que el token sea verdadero - TOKEN 1 ############################
+// Validar token
 const validacionToken = (req, res, next)=>{
     try {
         const token = req.header("Authorization").split(' ')[1];
@@ -28,21 +28,8 @@ const validacionToken = (req, res, next)=>{
         res.status(401).json('Token no válido');
     }
 }
-//2######################################################################
-/*const validacionToken = (req, res, next)=>{
-    try {
-        const token = req.headers("Authorization").split(' ')[1];
-        console.log(token);
-        jwt.verify(token, SECRET);
-        next();
-    } catch (error) {
-        console.log(error);
-        res.status(401).json('Token no válido');
-    }
-}*/
 
-
-// VALIDAR PERFIL DE USUARIO 1 ##########################################
+// VALIDAR PERFIL DE USUARIO 
 const validarPerfil = (req, res, next) => {
     try {
         const token = req.header("Authorization").split(' ')[1];
@@ -59,21 +46,6 @@ const validarPerfil = (req, res, next) => {
         console.log(error);
     }
 };
-//2##############################################################
-/*const validarPerfil = (req, res, next) => {
-    try {
-        const token = req.headers("Authorization").split(' ')[1];
-        console.log(token);
-        const payload = jwt.decode(token);
-        if (payload.perfilUsuario == 'Administrador'){ 
-            next();
-        }else{
-            res.status(401).json('Usuario no autorizado para realizar esta acción');
-        }
-    } catch (error) {
-        console.log(error);
-    }
-};*/
 
 
 // validar si email ya existe
@@ -84,7 +56,6 @@ const validacionEmailYaExiste = (req, res, next) => {
     ).then(result =>{       
         for (let i = 0; i < result.length; i++) {        
             if (result[i].email == req.body.email) {
-             //return res.send('usuario o email ya existe'); 
              return res.status(409).json('usuario o email ya existe');
                      
             }
@@ -101,9 +72,7 @@ const validacionDatosUsuario = (req, res, next) => {
         if (password.length < 4){
             return res.status(401).json('La contraseña debe contener minimo 4 caracteres');           
         } 
-       /* if (repeat_Password !== password) {
-            return res.status(403).json({ error: 'La contraseña debe coincidir con la anterior'});            
-        }*/
+       
     return next();
         
 }

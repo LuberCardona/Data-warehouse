@@ -1,6 +1,8 @@
 
+let jwt = sessionStorage.getItem("jwt");
+let removeUserPage = document.getElementsByClassName('removeUserPage')[0]; // link usuarios
+
 let rows = document.getElementById("rows"); 
-let menuUsuarios = document.getElementById("menuUsuarios");  
 let nombre = document.getElementById("nombre");
 let apellido = document.getElementById("apellido");
 let emailC = document.getElementById("email");
@@ -27,7 +29,7 @@ setTimeout(() => {
     $(document).ready(function() {
         $('#tablaContactos').DataTable();
     });
-}, 1050);
+}, 100);
 
 
 // obtener todos los contactos DB
@@ -86,7 +88,6 @@ window.onload = function () {
         emailC.value = "";
         cargo.value = "";
         editarContactoBtn.style.display = "none";
-        //crearContactoBtn.style.display = "initial";
     });
     crearContactoBtn.addEventListener('click', () => {
     agregarContactoN(jwt);
@@ -94,10 +95,6 @@ window.onload = function () {
     });    
     
 };
-
-
-
-//onclick="validarActualizar(${e.id_Contacto})"
 
 
 
@@ -138,7 +135,7 @@ function multDeleteContacts() {
     location.href = location.href;
 }
 
-// eliminar un solo contacto
+// eliminar un solo contacto seleccionado
 
 function eliminarSoloUnContacto(id_Contacto) {  
     let eliminarUnContactoBtn = document.getElementById("eliminarVariosContactosBtn");   
@@ -157,8 +154,7 @@ function eliminarUnContacto(id_Contacto) {
         headers:{"Content-Type":"application/json"}
     }).then(res => {
         if (res.status == 200) {
-           // alert('Contacto eliminado');
-           location.href = location.href; // recargar 
+           location.href = location.href; 
 
         } else {
             console.log("error");
@@ -167,7 +163,6 @@ function eliminarUnContacto(id_Contacto) {
          console.log(error);
     }); 
     }
-    location.href = location.href;
 }
 
 // obtener compañias
@@ -295,7 +290,7 @@ function agregarContactoN(){
                 console.log(response3.status);                          
                 if(response3.status == 200){                
                     alert('Contacto creado');
-                    location.href = location.href;                                  
+                    location.href = location.href;                                
                 }else if(response3.status == 409){                
                     alert('Contacto ya existe');                
                 }
@@ -304,12 +299,12 @@ function agregarContactoN(){
         }).catch( error => {
         });
     } 
-    
+      
     
 }
 
 
-// modal modificar sin btn crear - GET DE CONTACTOS POR ID
+// modal modificar-- sin btn crear - GET DE CONTACTOS POR ID
 
 function getInfoContactoAmodificar(id_Contacto) {
     if (jwt != null) {
@@ -374,3 +369,13 @@ function editarContactoN(jwt, id_Contacto) {
         }); 
     }
 }
+
+/////////
+function parseJwt (token) {
+    var base64Url = jwt.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+    return JSON.parse(jsonPayload);
+};

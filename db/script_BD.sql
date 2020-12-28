@@ -131,10 +131,10 @@
   (`id`, `Nombre`, `Apellido`, `email`, `perfil`, `password`)
   VALUES
   (NULL, "admin", "admin", "admin@email.com", "Administrador", 1234),
-  (NULL, "Ana", "Sierra", "anasierra@email.com", "Administrador", 12345678),
-  (NULL, "Vanesa", "muñoz", "vanesa@email.com", "Administrador", 90123456),
-  (NULL, "Yuliana", "Mesa", "yuliana@email.com", "Contactos", 78945612),
-  (NULL, "Tatiana", "Castro", "tatiana@email.com", "Contactos", 34567892);
+  (NULL, "contacto", "contacto", "contacto@email.com", "Contactos", 1234),
+  (NULL, "Vanesa", "muñoz", "vanesa@email.com", "Administrador", 1234),
+  (NULL, "Yuliana", "Mesa", "yuliana@email.com", "Contactos", 1234),
+  (NULL, "Tatiana", "Castro", "tatiana@email.com", "Contactos", 1234);
 
   INSERT INTO `datawarehouse`.`regiones`
   (`id`,`Nombre`)
@@ -177,7 +177,7 @@
   INSERT INTO `datawarehouse`.`contactos`
   (`id`, `Nombre`, `Apellido`, `Cargo`, `email`, `Canal_favorito`, `Interes`, `ciudad_id`, `compania_id`)
   VALUES
-  (NULL, "Camila", "Panto", "UX Designer", "camila@emai.com", "Correo Electrónico", 0, 1, 1),
+  (NULL, "Camila", "Panto", "UX Designer", "camila@email.com", "Correo Electrónico", 0, 1, 1),
   (NULL, "Agustin", "Soria", "UI Designer", "agustin@email.com", "WhatsApp", 25, 2, 2),
   (NULL, "Milena1", "Soria1", "Developer", "milena1@email.com","Correo Electrónico", 50, 3, 3),
   (NULL, "Milena2", "Soria2", "Developer", "milena2@email.com",  "WhatsApp", 75, 6, 4),

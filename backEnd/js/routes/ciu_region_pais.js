@@ -1,8 +1,4 @@
-const router = require("express").Router();
-//const validaciones = require('../../js/middlewares/validaciones');
-//const sequelize = require('../../js/conexiondb');
-//const jwt = require('jsonwebtoken');
-//const SECRET = process.env.SECRET;  
+const router = require("express").Router(); 
 const access_db = require('../../../db/access_db/ciu_reg_pais'); 
 
 // GET CIU-REG-PAIS
@@ -106,7 +102,7 @@ router.post('/crearCiudad', async (req, res)=>{ // CREAR CIUDAD SI NO EXISTE POR
     }
 });
 
-// MODIFICAR  PUT - CIU-REG_PAIS
+// MODIFICAR // PUT - CIU-REG_PAIS
 
 router.put('/modificarRegion/:id', async (req, res) => {
     try {

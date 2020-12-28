@@ -27,7 +27,6 @@ header{
     padding: 30px;
     width: 300px;
     height: 300px;
-   // margin-top: 50px
 }
 .logoHeader{
     padding: 5px;
@@ -57,7 +56,6 @@ header{
 
 
     &:hover{
-       // border-bottom: 2px solid #fff;
         color: aqua;
         font-weight: bold;
     }
@@ -67,8 +65,7 @@ header{
 
 .bienvenido-login{
     text-align: center;
-    background-color: #7ba7d1;
-    //height: 30px;
+    background-color: #7ba7d1;    
     padding: 2px;
     color: #fff;
     border-radius: 10px;
@@ -78,10 +75,7 @@ header{
     display: grid;
     padding: 10px;    
     justify-content: center;
-    //margin-top: 50px;
-   // border: 2px solid #7ba7d1;
-    width: 480px;
-    //transform: translate(85%);   
+    width: 480px; 
 
     
 }
@@ -149,13 +143,6 @@ header{
     display: block;
 }
 
-/*.mostrarformImp{
-    display: block !important;
-}*/
-
-/*.modificarUsuarioBtn{
-    display: none;
-}*/
 
 .bgModificar{
     background-color: orange;
@@ -226,6 +213,13 @@ header{
     justify-content: space-between;
     text-align: center;
     margin: 25px;
+}
+
+  
+.salir{
+    color: red;
+    text-decoration: unset;
+    margin-left: 95%;
 }
 
 

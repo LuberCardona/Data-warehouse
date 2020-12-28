@@ -25,7 +25,6 @@ function login(){
     })
 }
 
-let jwt = sessionStorage.getItem("jwt");
 
 function parseJwt (token) {
     var base64Url = jwt.split('.')[1];
@@ -35,18 +34,6 @@ function parseJwt (token) {
     }).join(''));
     return JSON.parse(jsonPayload);
 };
-parseJwt();
-
-let removeUserPage = document.getElementsByClassName('removeUserPage')[0];
-
-// si no es Administrador no puede acceder a la pestaña de usuarios
-window.onload = function () {
-    if (jwt != null) {
-        if (parseJwt(jwt).perfilUsuario == "Contactos") {
-            removeUserPage.remove();
-        }      
-    }
-} 
 
 
 

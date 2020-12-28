@@ -1,12 +1,13 @@
-let rowsC = document.getElementById("rowsC"); 
-let menuUsuarios = document.getElementById("menuUsuarios");  
+let jwt = sessionStorage.getItem("jwt");
+let removeUserPage = document.getElementsByClassName('removeUserPage')[0]; // link usuarios
+
+let rowsC = document.getElementById("rowsC");   
 let nombreC = document.getElementById("nombre");
 let direccionC = document.getElementById("direccion");
 let emailComp = document.getElementById("email");
 let telefono = document.getElementById("telefono");
 
 let listaCiudades  = document.getElementById("ciudad"); 
-
 
 let agregarCompania = document.getElementById("agregarCompania"); 
 let crearCompaniaBtn = document.getElementById("crearCompania"); 
@@ -16,7 +17,7 @@ setTimeout(() => {
     $(document).ready(function() {
         $('#tablaCompanias').DataTable();
     });
-}, 180);
+}, 100);
 
   
 
@@ -66,7 +67,6 @@ window.onload = function () {
             emailComp.value = "";
             telefono.value = "";
             editarCompaniaBtn.style.display = "none";
-           // crearCompaniaBtn.style.display = "initial";
         });
          crearCompaniaBtn.addEventListener('click', () => {
             agregarCompaniaN(jwt);
@@ -77,7 +77,7 @@ window.onload = function () {
 
 
 
-// funcion eliminar compañias // DELETE
+// funcion eliminar compañias 
 
 function eliminarCompaniaConfirmar(id_Comp) {      
    let eliminarCompaniaBtn = document.getElementById("eliminarCompaniasBtn");  // btn eliminar del modal 
@@ -132,7 +132,6 @@ function encontrarCiudades(jwt) {
 // AGREGAR COMPAÑIA
 
 function agregarCompaniaN(jwt) {
-  //  console.log(listaCiudades.value);
     if (jwt != null) {
        fetch('http://localhost:3000/agregarCompania', {
             method: 'POST',
@@ -149,7 +148,7 @@ function agregarCompaniaN(jwt) {
             res.json().then(data => {
                // console.log(data);
                 alert("Compañía Creada");
-                location.href = location.href; // recargar
+                location.href = location.href; 
 
             });
         } else {
@@ -212,7 +211,7 @@ function editarCompaniaFunc(jwt, compania_id) {
         }).then(res => {
             if (res.status == 200) {
                 alert("Compañía modificada");
-               location.href = location.href; //recargar
+               location.href = location.href; 
 
             } else {
                 console.log("error");
@@ -224,5 +223,14 @@ function editarCompaniaFunc(jwt, compania_id) {
 }
 
 
+/////////
+function parseJwt (token) {
+    var base64Url = jwt.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+    return JSON.parse(jsonPayload);
+};
 
 

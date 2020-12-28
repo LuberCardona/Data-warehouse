@@ -8,7 +8,7 @@ app.use(express.json());
 const helmet = require('helmet');
 app.use(helmet.permittedCrossDomainPolicies({permittedPolicies: "by-content-type"}));
 
-// permitir accesos desde el front - cors policy
+// permitir accesos desde el front 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
@@ -32,14 +32,13 @@ app.put('/modificarUsuario/:id', routerUsuarios); //SS
 app.delete('/eliminarUsuario/:id',routerUsuarios);
 
 // ENDPOINT DE CONTACTOS
-
 app.get('/infoContactos', routerContactos);  // todos los contactos 
 app.get('/infoContacto/:id', routerContactos);  // un contacto por id
 app.post('/agregarContactoN', routerContactos);
 app.put('/modificarContacto/:id', routerContactos);
 app.delete('/eliminarContacto/:id',routerContactos);
 
-//  ENDPOINTS DE companias
+//  ENDPOINTS DE COMPANIAS
 app.get('/infoCompanias', routerCompanias);  // todas las companias
 app.get('/infoCompania/:id', routerCompanias);  // una compañia por id
 app.post('/agregarCompania', routerCompanias);
